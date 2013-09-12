@@ -24,6 +24,8 @@
 		55E2ED9317D4F49800A5E2F7 /* Berkeley_311.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55E2ED9117D4F49800A5E2F7 /* Berkeley_311.xcdatamodeld */; };
 		55E2ED9A17D4F5BC00A5E2F7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55E2ED9917D4F5BC00A5E2F7 /* MainStoryboard.storyboard */; };
 		55E2ED9D17D54E4000A5E2F7 /* SuperHeroRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E2ED9C17D54E4000A5E2F7 /* SuperHeroRequestViewController.m */; };
+		55E32E5717E130A90023294F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E32E5617E130A90023294F /* AssetsLibrary.framework */; };
+		55E32E5917E137360023294F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E32E5817E137360023294F /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		55E2ED9917D4F5BC00A5E2F7 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		55E2ED9B17D54E4000A5E2F7 /* SuperHeroRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperHeroRequestViewController.h; sourceTree = "<group>"; };
 		55E2ED9C17D54E4000A5E2F7 /* SuperHeroRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperHeroRequestViewController.m; sourceTree = "<group>"; };
+		55E32E5617E130A90023294F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		55E32E5817E137360023294F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E32E5917E137360023294F /* CoreLocation.framework in Frameworks */,
+				55E32E5717E130A90023294F /* AssetsLibrary.framework in Frameworks */,
 				55E2ED7817D4F49800A5E2F7 /* UIKit.framework in Frameworks */,
 				55E2ED7A17D4F49800A5E2F7 /* Foundation.framework in Frameworks */,
 				55E2ED7C17D4F49800A5E2F7 /* CoreGraphics.framework in Frameworks */,
@@ -91,6 +97,8 @@
 		55E2ED7617D4F49800A5E2F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55E32E5817E137360023294F /* CoreLocation.framework */,
+				55E32E5617E130A90023294F /* AssetsLibrary.framework */,
 				55E2ED7717D4F49800A5E2F7 /* UIKit.framework */,
 				55E2ED7917D4F49800A5E2F7 /* Foundation.framework */,
 				55E2ED7B17D4F49800A5E2F7 /* CoreGraphics.framework */,
