@@ -22,6 +22,10 @@
 		55226518187F7228007A251F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F7187F7227007A251F /* UIKit.framework */; };
 		55226520187F7228007A251F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5522651E187F7228007A251F /* InfoPlist.strings */; };
 		55226522187F7228007A251F /* City_311Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55226521187F7228007A251F /* City_311Tests.m */; };
+		55226530187F745F007A251F /* EZ-parking-meter.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652C187F745F007A251F /* EZ-parking-meter.jpg */; };
+		55226531187F745F007A251F /* carnard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652D187F745F007A251F /* carnard.jpg */; };
+		55226532187F745F007A251F /* pick-ups.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652E187F745F007A251F /* pick-ups.jpg */; };
+		55226533187F745F007A251F /* parking-meters.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652F187F745F007A251F /* parking-meters.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,10 @@
 		5522651D187F7228007A251F /* City 311Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "City 311Tests-Info.plist"; sourceTree = "<group>"; };
 		5522651F187F7228007A251F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		55226521187F7228007A251F /* City_311Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = City_311Tests.m; sourceTree = "<group>"; };
+		5522652C187F745F007A251F /* EZ-parking-meter.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EZ-parking-meter.jpg"; sourceTree = "<group>"; };
+		5522652D187F745F007A251F /* carnard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = carnard.jpg; sourceTree = "<group>"; };
+		5522652E187F745F007A251F /* pick-ups.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pick-ups.jpg"; sourceTree = "<group>"; };
+		5522652F187F745F007A251F /* parking-meters.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "parking-meters.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 		552264F9187F7227007A251F /* City 311 */ = {
 			isa = PBXGroup;
 			children = (
+				5522652B187F7406007A251F /* Resource */,
 				55226502187F7227007A251F /* CityAppDelegate.h */,
 				55226503187F7227007A251F /* CityAppDelegate.m */,
 				55226505187F7227007A251F /* Main.storyboard */,
@@ -155,6 +164,17 @@
 				5522651E187F7228007A251F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5522652B187F7406007A251F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5522652C187F745F007A251F /* EZ-parking-meter.jpg */,
+				5522652D187F745F007A251F /* carnard.jpg */,
+				5522652E187F745F007A251F /* pick-ups.jpg */,
+				5522652F187F745F007A251F /* parking-meters.jpg */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +255,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5522650F187F7227007A251F /* Images.xcassets in Resources */,
+				55226532187F745F007A251F /* pick-ups.jpg in Resources */,
+				55226530187F745F007A251F /* EZ-parking-meter.jpg in Resources */,
+				55226531187F745F007A251F /* carnard.jpg in Resources */,
 				552264FE187F7227007A251F /* InfoPlist.strings in Resources */,
+				55226533187F745F007A251F /* parking-meters.jpg in Resources */,
 				55226507187F7227007A251F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

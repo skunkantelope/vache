@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CityFirstViewController : UIViewController
+@interface CityFirstViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
