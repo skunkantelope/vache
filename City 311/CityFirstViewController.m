@@ -8,13 +8,15 @@
 
 #import "CityFirstViewController.h"
 #import "CityFixoryViewController.h"
-#import "LargerImage.h"
 
 @interface CityFirstViewController () {
     NSArray *fixory;
     CALayer *greyLayer;
     LargerImage *topImage;
+    UITapGestureRecognizer *tapGesture;
 }
+
+- (void)tapOnGray:(UITapGestureRecognizer *)sender;
 
 @end
 
@@ -25,6 +27,24 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     fixory = @[@"EZ", @"pickups", @"parkingMeters", @"canard"];
+    
+    tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnGray:)];
+    tapGesture.numberOfTapsRequired = 1;
+    
+    greyLayer = [CALayer layer];
+    greyLayer.opacity = 0.7;
+    greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
+    greyLayer.frame = self.view.bounds;
+    
+    
+}
+
+- (void)tapOnGray:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        [topImage removeFromSuperview];
+        [greyLayer removeFromSuperlayer];
+        [self.view removeGestureRecognizer:tapGesture];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,15 +73,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // special effect - animate to a large display of selected image.
-    // Step 1. Add one grey transparent layer to controller view.
-    greyLayer = [CALayer layer];
-    greyLayer.opacity = 0.37;
-    greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
-    greyLayer.frame = self.view.bounds;
+    // Step 1. Add one grey transparent layer to controller view. See it in viewDidLoad method.
     [self.view.layer addSublayer:greyLayer];
     
     // Step 2. Add a view to controller view. Center the view.
     topImage = [[LargerImage alloc] initWithFrame:CGRectMake(70.0, 100.0, 180.0, self.view.bounds.size.height - 100.0 - 49.0 - 50.0)];
+    topImage.delegate = self;
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 
     for (id aView in [cell subviews]) {
@@ -79,18 +96,26 @@
         
     }
     [self.view addSubview:topImage];
-    // Step 3. Controller view receives tap event. When tapped, remove the layer created in step 1. Remove the view created in step 2.
+    // Step 3. Controller view receives tap event. When tapped, remove the layer created in step 1. Remove the view created in step 2. See the tap gesture method.
+    [self.view addGestureRecognizer:tapGesture];
     // Step 4. When the view receives tap, brings the CityFixoryViewController. Create a subclass of UIView, use protocol method, set this view controller to be a delegate that does presenting modal view transition.
     
-//    [self performSegueWithIdentifier:@"PresentReportSheet" sender:[collectionView cellForItemAtIndexPath:indexPath]];
-//    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+}
+
+#pragma LargerImageDelegateMethod
+- (void)presentReportSheetWithItem:(NSString *)item {
+    [topImage removeFromSuperview];
+    [greyLayer removeFromSuperlayer];
+    [self performSegueWithIdentifier:@"PresentReportSheet" sender:item];
     
+    //    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
 #pragma Seque
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"PresentReportSheet"]) {
         CityFixoryViewController *fixorySheet = segue.destinationViewController;
+        fixorySheet.title = (NSString*)sender;
     }
 }
 @end

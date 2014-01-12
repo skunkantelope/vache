@@ -10,7 +10,7 @@
 
 @protocol LargerImageDelegate <NSObject>
 
-- (void)presentReportSheet;
+- (void)presentReportSheetWithItem:(NSString*)item;
 
 @end
 

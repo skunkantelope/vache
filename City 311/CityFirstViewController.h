@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LargerImage.h"
 
-@interface CityFirstViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface CityFirstViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, LargerImageDelegate>
 
 @end
