@@ -7,6 +7,7 @@
 //
 
 #import "CityFixoryViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface CityFixoryViewController ()
 - (IBAction)sendReport:(UIButton *)sender;

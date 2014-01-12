@@ -53,7 +53,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma UICollectionviewDatasource
+#pragma mark - UICollectionviewDatasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -68,7 +68,7 @@
     return cell;
 }
 
-#pragma UICollectionviewDelegate
+#pragma mark - UICollectionviewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -102,7 +102,7 @@
     
 }
 
-#pragma LargerImageDelegateMethod
+#pragma mark - LargerImageDelegateMethod
 - (void)presentReportSheetWithItem:(NSString *)item {
     [topImage removeFromSuperview];
     [greyLayer removeFromSuperlayer];
