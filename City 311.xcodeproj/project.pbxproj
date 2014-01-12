@@ -26,6 +26,9 @@
 		55226531187F745F007A251F /* carnard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652D187F745F007A251F /* carnard.jpg */; };
 		55226532187F745F007A251F /* pick-ups.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652E187F745F007A251F /* pick-ups.jpg */; };
 		55226533187F745F007A251F /* parking-meters.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652F187F745F007A251F /* parking-meters.jpg */; };
+		5531910018821B1400827602 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 553190FF18821B1400827602 /* background.jpg */; };
+		55E25D1B1880B82400ECADCA /* CityFixoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */; };
+		55E25D1E1880CD6400ECADCA /* LargerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E25D1D1880CD6400ECADCA /* LargerImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,11 @@
 		5522652D187F745F007A251F /* carnard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = carnard.jpg; sourceTree = "<group>"; };
 		5522652E187F745F007A251F /* pick-ups.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pick-ups.jpg"; sourceTree = "<group>"; };
 		5522652F187F745F007A251F /* parking-meters.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "parking-meters.jpg"; sourceTree = "<group>"; };
+		553190FF18821B1400827602 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		55E25D191880B82400ECADCA /* CityFixoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityFixoryViewController.h; sourceTree = "<group>"; };
+		55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityFixoryViewController.m; sourceTree = "<group>"; };
+		55E25D1C1880CD6400ECADCA /* LargerImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargerImage.h; sourceTree = "<group>"; };
+		55E25D1D1880CD6400ECADCA /* LargerImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargerImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,11 +134,15 @@
 				5522652B187F7406007A251F /* Resource */,
 				55226502187F7227007A251F /* CityAppDelegate.h */,
 				55226503187F7227007A251F /* CityAppDelegate.m */,
+				55E25D1C1880CD6400ECADCA /* LargerImage.h */,
+				55E25D1D1880CD6400ECADCA /* LargerImage.m */,
 				55226505187F7227007A251F /* Main.storyboard */,
 				55226508187F7227007A251F /* CityFirstViewController.h */,
 				55226509187F7227007A251F /* CityFirstViewController.m */,
 				5522650B187F7227007A251F /* CitySecondViewController.h */,
 				5522650C187F7227007A251F /* CitySecondViewController.m */,
+				55E25D191880B82400ECADCA /* CityFixoryViewController.h */,
+				55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */,
 				5522650E187F7227007A251F /* Images.xcassets */,
 				552264FA187F7227007A251F /* Supporting Files */,
 			);
@@ -169,6 +181,7 @@
 		5522652B187F7406007A251F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				553190FF18821B1400827602 /* background.jpg */,
 				5522652C187F745F007A251F /* EZ-parking-meter.jpg */,
 				5522652D187F745F007A251F /* carnard.jpg */,
 				5522652E187F745F007A251F /* pick-ups.jpg */,
@@ -259,6 +272,7 @@
 				55226530187F745F007A251F /* EZ-parking-meter.jpg in Resources */,
 				55226531187F745F007A251F /* carnard.jpg in Resources */,
 				552264FE187F7227007A251F /* InfoPlist.strings in Resources */,
+				5531910018821B1400827602 /* background.jpg in Resources */,
 				55226533187F745F007A251F /* parking-meters.jpg in Resources */,
 				55226507187F7227007A251F /* Main.storyboard in Resources */,
 			);
@@ -279,7 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E25D1B1880B82400ECADCA /* CityFixoryViewController.m in Sources */,
 				55226500187F7227007A251F /* main.m in Sources */,
+				55E25D1E1880CD6400ECADCA /* LargerImage.m in Sources */,
 				5522650D187F7227007A251F /* CitySecondViewController.m in Sources */,
 				55226504187F7227007A251F /* CityAppDelegate.m in Sources */,
 				5522650A187F7227007A251F /* CityFirstViewController.m in Sources */,
@@ -491,6 +507,7 @@
 				55226527187F7228007A251F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55226528187F7228007A251F /* Build configuration list for PBXNativeTarget "City 311Tests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +516,7 @@
 				5522652A187F7228007A251F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
