@@ -14,6 +14,9 @@
     CALayer *greyLayer;
     LargerImage *topImage;
     UITapGestureRecognizer *tapGesture;
+    
+    BOOL isFirstLoad; // rely on the default value 0. As I can't initialize it in app delegate. Can't initialize City First View Controller in application didFinishLauch method.
+    
 }
 
 - (void)tapOnGray:(UITapGestureRecognizer *)sender;
@@ -26,6 +29,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    if (!isFirstLoad) {
+        
+        [[NSBundle mainBundle] loadNibNamed:@"startView" owner:self options:nil];
+        self.coverView.frame = CGRectMake(0, 0, 320, self.view.bounds.size.height - 49);
+        [self.view addSubview:self.coverView];
+        isFirstLoad = YES;
+    }
     fixory = @[@"EZ", @"pickups", @"parkingMeters", @"canard"];
     
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnGray:)];

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface CityFixoryViewController : UIViewController
+@interface CityFixoryViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, MKMapViewDelegate>
+@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (weak, nonatomic) IBOutlet UIImageView *incidentImage;
 
 @end

@@ -7,8 +7,17 @@
 //
 
 #import "CityAppDelegate.h"
+#import "CityFirstViewController.h"
 
 @implementation CityAppDelegate
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    CityFirstViewController *firstController = tabBarController.viewControllers[0];
+    [firstController.coverView removeFromSuperview];
+    firstController.coverView = nil;
+    
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

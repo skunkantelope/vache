@@ -11,4 +11,6 @@
 
 @interface CityFirstViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, LargerImageDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *coverView;
+
 @end

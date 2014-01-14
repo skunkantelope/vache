@@ -16,8 +16,8 @@
 
 @interface LargerImage : UIView
 
-@property (strong) UIImageView *largeImageview;
-@property (strong) UILabel *caption;
-@property (assign) id<LargerImageDelegate> delegate;
+@property (weak, nonatomic) UIImageView *largeImageview;
+@property (weak, nonatomic) UILabel *caption;
+@property (assign, nonatomic) id<LargerImageDelegate> delegate;
 
 @end
