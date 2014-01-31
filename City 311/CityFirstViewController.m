@@ -9,8 +9,13 @@
 #import "CityFirstViewController.h"
 #import "CityFixoryViewController.h"
 
+enum Fixory {
+    Graffiti, Pothole, Meter, Dumping,
+};
+
 @interface CityFirstViewController () {
     NSArray *fixory;
+    NSArray *captions;
     CALayer *greyLayer;
     LargerImage *topImage;
     UITapGestureRecognizer *tapGesture;
@@ -18,6 +23,8 @@
     BOOL isFirstLoad; // rely on the default value 0. As I can't initialize it in app delegate. Can't initialize City First View Controller in application didFinishLauch method.
     
 }
+
++ (NSString *)instructionFor:(int)category;
 
 - (void)tapOnGray:(UITapGestureRecognizer *)sender;
 
@@ -36,7 +43,8 @@
         [self.view addSubview:self.coverView];
         isFirstLoad = YES;
     }
-    fixory = @[@"EZ", @"pickups", @"parkingMeters", @"canard"];
+    fixory = @[@"EZ", @"pickups", @"parkingMeters", @"pothole", @"graffiti", @"dumping", @"tree", @"request"];
+    captions = @[@"Park EZ Pay Station", @"Missed Pick-ups", @"Broken Parking Meter", @"Street or Sidewalk Pothole", @"Graffiti", @"Illegal Dumping", @"Plant Trees", @"Request General Service"];
     
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnGray:)];
     tapGesture.numberOfTapsRequired = 1;
@@ -46,7 +54,36 @@
     greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
     greyLayer.frame = self.view.bounds;
     
-    
+    // create the eight LargerImage objects.
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showReportStatusToUser) name:@"ShowStatusTab" object:nil];
+}
+
+- (void) showReportStatusToUser {
+
+    self.tabBarController.selectedIndex = 3;
+}
+
++ (NSString *)instructionFor:(int)category {
+    NSString *instruction;
+    switch (category) {
+        case Graffiti:
+            instruction = @"Is it offensive, not offensive? Is it a business, house, bus bench, traffic sign, etc.?";
+            break;
+        case Pothole:
+            instruction = @"";
+            break;
+        case Meter:
+            instruction = @"";
+            break;
+        case Dumping:
+            instruction = @"Is it a public safety hazard? What material is dumped?";
+            break;
+        default:
+            instruction = @"";
+            break;
+    }
+    return instruction;
 }
 
 - (void)tapOnGray:(UITapGestureRecognizer *)sender {
@@ -70,7 +107,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 3;
+    return 8;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -85,20 +122,18 @@
     // special effect - animate to a large display of selected image.
     // Step 1. Add one grey transparent layer to controller view. See it in viewDidLoad method.
     [self.view.layer addSublayer:greyLayer];
-    
+    NSLog(@"selected me");
     // Step 2. Add a view to controller view. Center the view.
     topImage = [[LargerImage alloc] initWithFrame:CGRectMake(70.0, 100.0, 180.0, self.view.bounds.size.height - 100.0 - 49.0 - 50.0)];
     topImage.delegate = self;
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 
     for (id aView in [cell subviews]) {
-        NSLog(@"number of subviews: %i", [[cell subviews] count]);
         for (id anotherView in [aView subviews]) {
             if ([anotherView isKindOfClass:[UIImageView class]]) {
                 UIImage *originalImage = [(UIImageView *)anotherView image];
-                NSLog(@"find an image");
                 topImage.largeImageview.image = originalImage;
-                topImage.caption.text = fixory[indexPath.row];
+                topImage.caption.text = captions[indexPath.row];
             } else {
                 NSLog(@"didn't find an image");
             }
@@ -114,8 +149,34 @@
 
 #pragma mark - LargerImageDelegateMethod
 - (void)presentReportSheetWithItem:(NSString *)item {
+    NSLog(@"scene %@", item);
     [topImage removeFromSuperview];
     [greyLayer removeFromSuperlayer];
+    if ([item isEqualToString:@"Missed Pick-ups"]) {
+        [self performSegueWithIdentifier:@"Pickups" sender:item];
+        return;
+    }
+    if ([item isEqualToString:@"Request General Service"]) {
+        [self performSegueWithIdentifier:@"Request" sender:item];
+        return;
+    }
+    if ( [item isEqualToString:@"Park EZ Pay Station"] ) {
+        [self performSegueWithIdentifier:@"ParkingMeter" sender:item];
+        return;
+    }
+    if ( [item isEqualToString:@"Broken Parking Meter"]) {
+        [self performSegueWithIdentifier:@"ParkingMeter" sender:item];
+        return;
+    }
+    if ([item isEqualToString:@"Street or Sidewalk Pothole"]){
+        [self performSegueWithIdentifier:@"Pothole" sender:item];
+        return;
+    }
+    if ([item isEqualToString:@"Plant Trees"]) {
+        [self performSegueWithIdentifier:@"PlantTree" sender:item];
+        return;
+    }
+    
     [self performSegueWithIdentifier:@"PresentReportSheet" sender:item];
     
     //    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -125,7 +186,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"PresentReportSheet"]) {
         CityFixoryViewController *fixorySheet = segue.destinationViewController;
-        fixorySheet.title = (NSString*)sender;
+        enum Fixory k = Dumping;
+        if ([(NSString *)sender isEqualToString:@"Graffiti"]) {
+            k = Graffiti;
+        }
+        fixorySheet.guidance = [CityFirstViewController instructionFor:k];
     }
 }
+
 @end

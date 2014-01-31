@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550E6E0F188751BF001C5FC0 /* MissedPickupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550E6E0E188751BF001C5FC0 /* MissedPickupsViewController.m */; };
+		550E6E121887567E001C5FC0 /* GeneralRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550E6E111887567E001C5FC0 /* GeneralRequestViewController.m */; };
 		552264F4187F7227007A251F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F3187F7227007A251F /* Foundation.framework */; };
 		552264F6187F7227007A251F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F5187F7227007A251F /* CoreGraphics.framework */; };
 		552264F8187F7227007A251F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F7187F7227007A251F /* UIKit.framework */; };
@@ -15,7 +17,6 @@
 		55226504187F7227007A251F /* CityAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55226503187F7227007A251F /* CityAppDelegate.m */; };
 		55226507187F7227007A251F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55226505187F7227007A251F /* Main.storyboard */; };
 		5522650A187F7227007A251F /* CityFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55226509187F7227007A251F /* CityFirstViewController.m */; };
-		5522650D187F7227007A251F /* CitySecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5522650C187F7227007A251F /* CitySecondViewController.m */; };
 		5522650F187F7227007A251F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5522650E187F7227007A251F /* Images.xcassets */; };
 		55226516187F7228007A251F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55226515187F7228007A251F /* XCTest.framework */; };
 		55226517187F7228007A251F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F3187F7227007A251F /* Foundation.framework */; };
@@ -26,14 +27,32 @@
 		55226531187F745F007A251F /* carnard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652D187F745F007A251F /* carnard.jpg */; };
 		55226532187F745F007A251F /* pick-ups.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652E187F745F007A251F /* pick-ups.jpg */; };
 		55226533187F745F007A251F /* parking-meters.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652F187F745F007A251F /* parking-meters.jpg */; };
+		5529A4311891D022006C5381 /* dumping.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5529A42D1891D022006C5381 /* dumping.jpg */; };
+		5529A4321891D022006C5381 /* graffiti.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5529A42E1891D022006C5381 /* graffiti.jpg */; };
+		5529A4331891D022006C5381 /* pothole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5529A42F1891D022006C5381 /* pothole.jpg */; };
+		5529A4341891D022006C5381 /* tree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5529A4301891D022006C5381 /* tree.jpg */; };
+		553055631888ABCA00C57A8E /* CityNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 553055621888ABCA00C57A8E /* CityNews.m */; };
+		553055651888BD1A00C57A8E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 553055641888BD1A00C57A8E /* libxml2.2.dylib */; };
+		5530556D1888BE0400C57A8E /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 553055681888BE0400C57A8E /* TFHpple.m */; };
+		5530556E1888BE0400C57A8E /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530556A1888BE0400C57A8E /* TFHppleElement.m */; };
+		5530556F1888BE0400C57A8E /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530556C1888BE0400C57A8E /* XPathQuery.m */; };
+		5531075D1899A2E0009960AD /* CityUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5531075C1899A2E0009960AD /* CityUtility.m */; };
+		553107601899A987009960AD /* ReportStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5531075F1899A987009960AD /* ReportStatusTableViewController.m */; };
 		5531910018821B1400827602 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 553190FF18821B1400827602 /* background.jpg */; };
 		5531910218822ACF00827602 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5531910118822ACF00827602 /* MapKit.framework */; };
-		5531910518832EC200827602 /* CityNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5531910418832EC200827602 /* CityNewsViewController.m */; };
 		55319108188338E200827602 /* startView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55319107188338E200827602 /* startView.xib */; };
 		5547F10C18849E18009CEE09 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5547F10B18849E18009CEE09 /* CoreLocation.framework */; };
+		557193FF18906EAE00F2AA52 /* PotholeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557193FE18906EAE00F2AA52 /* PotholeViewController.m */; };
+		5571940218906F5700F2AA52 /* ParkingMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571940118906F5700F2AA52 /* ParkingMeterViewController.m */; };
+		557194031890717300F2AA52 /* CityNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5531910418832EC200827602 /* CityNewsViewController.m */; };
+		5578A2811889EB9D009640CF /* CityNewsParseHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5578A2801889EB9D009640CF /* CityNewsParseHTMLViewController.m */; };
+		5578A285188A043D009640CF /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5578A284188A043D009640CF /* NewsViewController.m */; };
+		55B8E6F818945E920000A0E2 /* TreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8E6F718945E920000A0E2 /* TreeViewController.m */; };
+		55B8E6FB18946FE50000A0E2 /* SurfaceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8E6FA18946FE50000A0E2 /* SurfaceType.m */; };
 		55D5E14E188609FC00C52096 /* DrawOnPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D5E14D188609FC00C52096 /* DrawOnPhotoViewController.m */; };
 		55E25D1B1880B82400ECADCA /* CityFixoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */; };
 		55E25D1E1880CD6400ECADCA /* LargerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E25D1D1880CD6400ECADCA /* LargerImage.m */; };
+		55E31E311893275C00BB6061 /* ProblemType.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E31E301893275C00BB6061 /* ProblemType.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +66,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		550E6E0D188751BE001C5FC0 /* MissedPickupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissedPickupsViewController.h; sourceTree = "<group>"; };
+		550E6E0E188751BF001C5FC0 /* MissedPickupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissedPickupsViewController.m; sourceTree = "<group>"; };
+		550E6E101887567E001C5FC0 /* GeneralRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralRequestViewController.h; sourceTree = "<group>"; };
+		550E6E111887567E001C5FC0 /* GeneralRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralRequestViewController.m; sourceTree = "<group>"; };
 		552264F0187F7227007A251F /* City 311.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "City 311.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		552264F3187F7227007A251F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		552264F5187F7227007A251F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,8 +83,6 @@
 		55226506187F7227007A251F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55226508187F7227007A251F /* CityFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityFirstViewController.h; sourceTree = "<group>"; };
 		55226509187F7227007A251F /* CityFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityFirstViewController.m; sourceTree = "<group>"; };
-		5522650B187F7227007A251F /* CitySecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CitySecondViewController.h; sourceTree = "<group>"; };
-		5522650C187F7227007A251F /* CitySecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CitySecondViewController.m; sourceTree = "<group>"; };
 		5522650E187F7227007A251F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55226514187F7228007A251F /* City 311Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "City 311Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55226515187F7228007A251F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -72,18 +93,49 @@
 		5522652D187F745F007A251F /* carnard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = carnard.jpg; sourceTree = "<group>"; };
 		5522652E187F745F007A251F /* pick-ups.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pick-ups.jpg"; sourceTree = "<group>"; };
 		5522652F187F745F007A251F /* parking-meters.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "parking-meters.jpg"; sourceTree = "<group>"; };
+		5529A42D1891D022006C5381 /* dumping.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dumping.jpg; sourceTree = "<group>"; };
+		5529A42E1891D022006C5381 /* graffiti.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = graffiti.jpg; sourceTree = "<group>"; };
+		5529A42F1891D022006C5381 /* pothole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pothole.jpg; sourceTree = "<group>"; };
+		5529A4301891D022006C5381 /* tree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tree.jpg; sourceTree = "<group>"; };
+		553055611888ABCA00C57A8E /* CityNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityNews.h; sourceTree = "<group>"; };
+		553055621888ABCA00C57A8E /* CityNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityNews.m; sourceTree = "<group>"; };
+		553055641888BD1A00C57A8E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		553055671888BE0400C57A8E /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		553055681888BE0400C57A8E /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		553055691888BE0400C57A8E /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		5530556A1888BE0400C57A8E /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		5530556B1888BE0400C57A8E /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		5530556C1888BE0400C57A8E /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		5531075B1899A2E0009960AD /* CityUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityUtility.h; sourceTree = "<group>"; };
+		5531075C1899A2E0009960AD /* CityUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityUtility.m; sourceTree = "<group>"; };
+		5531075E1899A987009960AD /* ReportStatusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportStatusTableViewController.h; sourceTree = "<group>"; };
+		5531075F1899A987009960AD /* ReportStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportStatusTableViewController.m; sourceTree = "<group>"; };
 		553190FF18821B1400827602 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		5531910118822ACF00827602 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5531910318832EC200827602 /* CityNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityNewsViewController.h; sourceTree = "<group>"; };
 		5531910418832EC200827602 /* CityNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityNewsViewController.m; sourceTree = "<group>"; };
 		55319107188338E200827602 /* startView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = startView.xib; sourceTree = "<group>"; };
 		5547F10B18849E18009CEE09 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		557193FD18906EAE00F2AA52 /* PotholeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotholeViewController.h; sourceTree = "<group>"; };
+		557193FE18906EAE00F2AA52 /* PotholeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotholeViewController.m; sourceTree = "<group>"; };
+		5571940018906F5700F2AA52 /* ParkingMeterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkingMeterViewController.h; sourceTree = "<group>"; };
+		5571940118906F5700F2AA52 /* ParkingMeterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkingMeterViewController.m; sourceTree = "<group>"; };
+		5578A27F1889EB9D009640CF /* CityNewsParseHTMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityNewsParseHTMLViewController.h; sourceTree = "<group>"; };
+		5578A2801889EB9D009640CF /* CityNewsParseHTMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityNewsParseHTMLViewController.m; sourceTree = "<group>"; };
+		5578A283188A043D009640CF /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		5578A284188A043D009640CF /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		55B8E6F618945E920000A0E2 /* TreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeViewController.h; sourceTree = "<group>"; };
+		55B8E6F718945E920000A0E2 /* TreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeViewController.m; sourceTree = "<group>"; };
+		55B8E6F918946FE50000A0E2 /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
+		55B8E6FA18946FE50000A0E2 /* SurfaceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurfaceType.m; sourceTree = "<group>"; };
 		55D5E14C188609FC00C52096 /* DrawOnPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawOnPhotoViewController.h; sourceTree = "<group>"; };
 		55D5E14D188609FC00C52096 /* DrawOnPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawOnPhotoViewController.m; sourceTree = "<group>"; };
 		55E25D191880B82400ECADCA /* CityFixoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityFixoryViewController.h; sourceTree = "<group>"; };
 		55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityFixoryViewController.m; sourceTree = "<group>"; };
 		55E25D1C1880CD6400ECADCA /* LargerImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargerImage.h; sourceTree = "<group>"; };
 		55E25D1D1880CD6400ECADCA /* LargerImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargerImage.m; sourceTree = "<group>"; };
+		55E31E2F1893275C00BB6061 /* ProblemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProblemType.h; sourceTree = "<group>"; };
+		55E31E301893275C00BB6061 /* ProblemType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProblemType.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553055651888BD1A00C57A8E /* libxml2.2.dylib in Frameworks */,
 				5547F10C18849E18009CEE09 /* CoreLocation.framework in Frameworks */,
 				5531910218822ACF00827602 /* MapKit.framework in Frameworks */,
 				552264F6187F7227007A251F /* CoreGraphics.framework in Frameworks */,
@@ -134,6 +187,7 @@
 		552264F2187F7227007A251F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				553055641888BD1A00C57A8E /* libxml2.2.dylib */,
 				5547F10B18849E18009CEE09 /* CoreLocation.framework */,
 				5531910118822ACF00827602 /* MapKit.framework */,
 				552264F3187F7227007A251F /* Foundation.framework */,
@@ -147,25 +201,44 @@
 		552264F9187F7227007A251F /* City 311 */ = {
 			isa = PBXGroup;
 			children = (
+				553055661888BDC900C57A8E /* hpple */,
 				5522652B187F7406007A251F /* Resource */,
+				5578A2821889EE98009640CF /* Model */,
 				55226502187F7227007A251F /* CityAppDelegate.h */,
 				55226503187F7227007A251F /* CityAppDelegate.m */,
-				55E25D1C1880CD6400ECADCA /* LargerImage.h */,
-				55E25D1D1880CD6400ECADCA /* LargerImage.m */,
+				5578A27F1889EB9D009640CF /* CityNewsParseHTMLViewController.h */,
+				5578A2801889EB9D009640CF /* CityNewsParseHTMLViewController.m */,
 				55226505187F7227007A251F /* Main.storyboard */,
+				5531075E1899A987009960AD /* ReportStatusTableViewController.h */,
+				5531075F1899A987009960AD /* ReportStatusTableViewController.m */,
 				55226508187F7227007A251F /* CityFirstViewController.h */,
 				55226509187F7227007A251F /* CityFirstViewController.m */,
-				5522650B187F7227007A251F /* CitySecondViewController.h */,
-				5522650C187F7227007A251F /* CitySecondViewController.m */,
 				55E25D191880B82400ECADCA /* CityFixoryViewController.h */,
 				55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */,
 				5531910318832EC200827602 /* CityNewsViewController.h */,
 				5531910418832EC200827602 /* CityNewsViewController.m */,
 				55D5E14C188609FC00C52096 /* DrawOnPhotoViewController.h */,
 				55D5E14D188609FC00C52096 /* DrawOnPhotoViewController.m */,
+				550E6E0D188751BE001C5FC0 /* MissedPickupsViewController.h */,
+				550E6E0E188751BF001C5FC0 /* MissedPickupsViewController.m */,
+				550E6E101887567E001C5FC0 /* GeneralRequestViewController.h */,
+				550E6E111887567E001C5FC0 /* GeneralRequestViewController.m */,
+				5578A283188A043D009640CF /* NewsViewController.h */,
+				5578A284188A043D009640CF /* NewsViewController.m */,
+				557193FD18906EAE00F2AA52 /* PotholeViewController.h */,
+				557193FE18906EAE00F2AA52 /* PotholeViewController.m */,
+				5571940018906F5700F2AA52 /* ParkingMeterViewController.h */,
+				5571940118906F5700F2AA52 /* ParkingMeterViewController.m */,
+				55E31E2F1893275C00BB6061 /* ProblemType.h */,
+				55E31E301893275C00BB6061 /* ProblemType.m */,
+				55B8E6F618945E920000A0E2 /* TreeViewController.h */,
+				55B8E6F718945E920000A0E2 /* TreeViewController.m */,
+				55B8E6F918946FE50000A0E2 /* SurfaceType.h */,
+				55B8E6FA18946FE50000A0E2 /* SurfaceType.m */,
+				5531075B1899A2E0009960AD /* CityUtility.h */,
+				5531075C1899A2E0009960AD /* CityUtility.m */,
 				5522650E187F7227007A251F /* Images.xcassets */,
 				552264FA187F7227007A251F /* Supporting Files */,
-				55319107188338E200827602 /* startView.xib */,
 			);
 			path = "City 311";
 			sourceTree = "<group>";
@@ -202,6 +275,11 @@
 		5522652B187F7406007A251F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5529A42D1891D022006C5381 /* dumping.jpg */,
+				5529A42E1891D022006C5381 /* graffiti.jpg */,
+				5529A42F1891D022006C5381 /* pothole.jpg */,
+				5529A4301891D022006C5381 /* tree.jpg */,
+				55319107188338E200827602 /* startView.xib */,
 				553190FF18821B1400827602 /* background.jpg */,
 				5522652C187F745F007A251F /* EZ-parking-meter.jpg */,
 				5522652D187F745F007A251F /* carnard.jpg */,
@@ -209,6 +287,30 @@
 				5522652F187F745F007A251F /* parking-meters.jpg */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		553055661888BDC900C57A8E /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				553055671888BE0400C57A8E /* TFHpple.h */,
+				553055681888BE0400C57A8E /* TFHpple.m */,
+				553055691888BE0400C57A8E /* TFHppleElement.h */,
+				5530556A1888BE0400C57A8E /* TFHppleElement.m */,
+				5530556B1888BE0400C57A8E /* XPathQuery.h */,
+				5530556C1888BE0400C57A8E /* XPathQuery.m */,
+			);
+			name = hpple;
+			sourceTree = "<group>";
+		};
+		5578A2821889EE98009640CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				553055611888ABCA00C57A8E /* CityNews.h */,
+				553055621888ABCA00C57A8E /* CityNews.m */,
+				55E25D1C1880CD6400ECADCA /* LargerImage.h */,
+				55E25D1D1880CD6400ECADCA /* LargerImage.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,12 +392,16 @@
 			files = (
 				5522650F187F7227007A251F /* Images.xcassets in Resources */,
 				55226532187F745F007A251F /* pick-ups.jpg in Resources */,
+				5529A4311891D022006C5381 /* dumping.jpg in Resources */,
 				55226530187F745F007A251F /* EZ-parking-meter.jpg in Resources */,
 				55226531187F745F007A251F /* carnard.jpg in Resources */,
 				552264FE187F7227007A251F /* InfoPlist.strings in Resources */,
 				5531910018821B1400827602 /* background.jpg in Resources */,
 				55226533187F745F007A251F /* parking-meters.jpg in Resources */,
+				5529A4341891D022006C5381 /* tree.jpg in Resources */,
 				55319108188338E200827602 /* startView.xib in Resources */,
+				5529A4331891D022006C5381 /* pothole.jpg in Resources */,
+				5529A4321891D022006C5381 /* graffiti.jpg in Resources */,
 				55226507187F7227007A251F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,14 +421,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5531910518832EC200827602 /* CityNewsViewController.m in Sources */,
+				5531075D1899A2E0009960AD /* CityUtility.m in Sources */,
+				557194031890717300F2AA52 /* CityNewsViewController.m in Sources */,
+				55E31E311893275C00BB6061 /* ProblemType.m in Sources */,
+				5530556E1888BE0400C57A8E /* TFHppleElement.m in Sources */,
+				553055631888ABCA00C57A8E /* CityNews.m in Sources */,
+				5578A2811889EB9D009640CF /* CityNewsParseHTMLViewController.m in Sources */,
 				55E25D1B1880B82400ECADCA /* CityFixoryViewController.m in Sources */,
 				55D5E14E188609FC00C52096 /* DrawOnPhotoViewController.m in Sources */,
+				550E6E121887567E001C5FC0 /* GeneralRequestViewController.m in Sources */,
+				550E6E0F188751BF001C5FC0 /* MissedPickupsViewController.m in Sources */,
 				55226500187F7227007A251F /* main.m in Sources */,
+				553107601899A987009960AD /* ReportStatusTableViewController.m in Sources */,
+				5530556F1888BE0400C57A8E /* XPathQuery.m in Sources */,
 				55E25D1E1880CD6400ECADCA /* LargerImage.m in Sources */,
-				5522650D187F7227007A251F /* CitySecondViewController.m in Sources */,
 				55226504187F7227007A251F /* CityAppDelegate.m in Sources */,
+				5530556D1888BE0400C57A8E /* TFHpple.m in Sources */,
 				5522650A187F7227007A251F /* CityFirstViewController.m in Sources */,
+				55B8E6F818945E920000A0E2 /* TreeViewController.m in Sources */,
+				557193FF18906EAE00F2AA52 /* PotholeViewController.m in Sources */,
+				5578A285188A043D009640CF /* NewsViewController.m in Sources */,
+				5571940218906F5700F2AA52 /* ParkingMeterViewController.m in Sources */,
+				55B8E6FB18946FE50000A0E2 /* SurfaceType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +450,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55D5E14F188609FC00C52096 /* DrawOnPhotoViewController.m in Sources */,
 				55226522187F7228007A251F /* City_311Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +525,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode51-DP.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -439,6 +563,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode51-DP.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -454,6 +583,7 @@
 				GCC_PREFIX_HEADER = "City 311/City 311-Prefix.pch";
 				INFOPLIST_FILE = "City 311/City 311-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos7.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -467,6 +597,7 @@
 				GCC_PREFIX_HEADER = "City 311/City 311-Prefix.pch";
 				INFOPLIST_FILE = "City 311/City 311-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos7.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
