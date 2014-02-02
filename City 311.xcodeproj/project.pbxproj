@@ -44,7 +44,6 @@
 		5547F10C18849E18009CEE09 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5547F10B18849E18009CEE09 /* CoreLocation.framework */; };
 		557193FF18906EAE00F2AA52 /* PotholeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557193FE18906EAE00F2AA52 /* PotholeViewController.m */; };
 		5571940218906F5700F2AA52 /* ParkingMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571940118906F5700F2AA52 /* ParkingMeterViewController.m */; };
-		557194031890717300F2AA52 /* CityNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5531910418832EC200827602 /* CityNewsViewController.m */; };
 		5578A2811889EB9D009640CF /* CityNewsParseHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5578A2801889EB9D009640CF /* CityNewsParseHTMLViewController.m */; };
 		5578A285188A043D009640CF /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5578A284188A043D009640CF /* NewsViewController.m */; };
 		55B8E6F818945E920000A0E2 /* TreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8E6F718945E920000A0E2 /* TreeViewController.m */; };
@@ -53,6 +52,7 @@
 		55E25D1B1880B82400ECADCA /* CityFixoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */; };
 		55E25D1E1880CD6400ECADCA /* LargerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E25D1D1880CD6400ECADCA /* LargerImage.m */; };
 		55E31E311893275C00BB6061 /* ProblemType.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E31E301893275C00BB6061 /* ProblemType.m */; };
+		55F8EC49189EE8F600C518EA /* ReportStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8EC48189EE8F600C518EA /* ReportStatusCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,8 +112,6 @@
 		5531075F1899A987009960AD /* ReportStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportStatusTableViewController.m; sourceTree = "<group>"; };
 		553190FF18821B1400827602 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		5531910118822ACF00827602 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		5531910318832EC200827602 /* CityNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityNewsViewController.h; sourceTree = "<group>"; };
-		5531910418832EC200827602 /* CityNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityNewsViewController.m; sourceTree = "<group>"; };
 		55319107188338E200827602 /* startView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = startView.xib; sourceTree = "<group>"; };
 		5547F10B18849E18009CEE09 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		557193FD18906EAE00F2AA52 /* PotholeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotholeViewController.h; sourceTree = "<group>"; };
@@ -136,6 +134,8 @@
 		55E25D1D1880CD6400ECADCA /* LargerImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargerImage.m; sourceTree = "<group>"; };
 		55E31E2F1893275C00BB6061 /* ProblemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProblemType.h; sourceTree = "<group>"; };
 		55E31E301893275C00BB6061 /* ProblemType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProblemType.m; sourceTree = "<group>"; };
+		55F8EC47189EE8F600C518EA /* ReportStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportStatusCell.h; sourceTree = "<group>"; };
+		55F8EC48189EE8F600C518EA /* ReportStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportStatusCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,8 +215,6 @@
 				55226509187F7227007A251F /* CityFirstViewController.m */,
 				55E25D191880B82400ECADCA /* CityFixoryViewController.h */,
 				55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */,
-				5531910318832EC200827602 /* CityNewsViewController.h */,
-				5531910418832EC200827602 /* CityNewsViewController.m */,
 				55D5E14C188609FC00C52096 /* DrawOnPhotoViewController.h */,
 				55D5E14D188609FC00C52096 /* DrawOnPhotoViewController.m */,
 				550E6E0D188751BE001C5FC0 /* MissedPickupsViewController.h */,
@@ -309,6 +307,8 @@
 				553055621888ABCA00C57A8E /* CityNews.m */,
 				55E25D1C1880CD6400ECADCA /* LargerImage.h */,
 				55E25D1D1880CD6400ECADCA /* LargerImage.m */,
+				55F8EC47189EE8F600C518EA /* ReportStatusCell.h */,
+				55F8EC48189EE8F600C518EA /* ReportStatusCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -422,7 +422,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5531075D1899A2E0009960AD /* CityUtility.m in Sources */,
-				557194031890717300F2AA52 /* CityNewsViewController.m in Sources */,
 				55E31E311893275C00BB6061 /* ProblemType.m in Sources */,
 				5530556E1888BE0400C57A8E /* TFHppleElement.m in Sources */,
 				553055631888ABCA00C57A8E /* CityNews.m in Sources */,
@@ -435,6 +434,7 @@
 				553107601899A987009960AD /* ReportStatusTableViewController.m in Sources */,
 				5530556F1888BE0400C57A8E /* XPathQuery.m in Sources */,
 				55E25D1E1880CD6400ECADCA /* LargerImage.m in Sources */,
+				55F8EC49189EE8F600C518EA /* ReportStatusCell.m in Sources */,
 				55226504187F7227007A251F /* CityAppDelegate.m in Sources */,
 				5530556D1888BE0400C57A8E /* TFHpple.m in Sources */,
 				5522650A187F7227007A251F /* CityFirstViewController.m in Sources */,

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CityNewsViewController : UITableViewController
+@interface CityNewsViewController : UITableViewController <NSXMLParserDelegate>
 
 @end
