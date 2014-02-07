@@ -26,14 +26,18 @@
         gestureRecognizer.numberOfTapsRequired = 1;
         [self addGestureRecognizer:gestureRecognizer];
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height - 20.0)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height - 22.0)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:imageView];
         self.largeImageview = imageView;
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, frame.size.height - 20.0, frame.size.width, 20.0)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, frame.size.height - 22.0, frame.size.width, 22.0)];
         //label.backgroundColor = [UIColor clearColor];
+        label.numberOfLines = 1;
+        label.adjustsFontSizeToFitWidth = YES;
         label.textAlignment = NSTextAlignmentCenter;
+        
+
         [self addSubview:label];
         self.caption = label;
       

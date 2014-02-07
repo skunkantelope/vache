@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Kelly Kahuna Imagery. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
 @interface CityFixoryViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>

@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Kelly Kahuna Imagery. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface TreeViewController : UIViewController <UITextFieldDelegate>
+@interface TreeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 @end

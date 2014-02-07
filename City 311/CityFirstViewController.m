@@ -61,7 +61,7 @@ enum Fixory {
 
 - (void) showReportStatusToUser {
 
-    self.tabBarController.selectedIndex = 3;
+    self.tabBarController.selectedIndex = 2;
 }
 
 + (NSString *)instructionFor:(int)category {
@@ -92,6 +92,7 @@ enum Fixory {
         [greyLayer removeFromSuperlayer];
         [self.view removeGestureRecognizer:tapGesture];
     }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,7 +123,6 @@ enum Fixory {
     // special effect - animate to a large display of selected image.
     // Step 1. Add one grey transparent layer to controller view. See it in viewDidLoad method.
     [self.view.layer addSublayer:greyLayer];
-    NSLog(@"selected me");
     // Step 2. Add a view to controller view. Center the view.
     topImage = [[LargerImage alloc] initWithFrame:CGRectMake(70.0, 100.0, 180.0, self.view.bounds.size.height - 100.0 - 49.0 - 50.0)];
     topImage.delegate = self;
@@ -141,6 +141,7 @@ enum Fixory {
         
     }
     [self.view addSubview:topImage];
+
     // Step 3. Controller view receives tap event. When tapped, remove the layer created in step 1. Remove the view created in step 2. See the tap gesture method.
     [self.view addGestureRecognizer:tapGesture];
     // Step 4. When the view receives tap, brings the CityFixoryViewController. Create a subclass of UIView, use protocol method, set this view controller to be a delegate that does presenting modal view transition.
