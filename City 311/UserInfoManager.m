@@ -22,11 +22,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *lastName;
 @property (weak, nonatomic) IBOutlet UITextField *firstName;
 
-@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+//@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 
 - (IBAction)continue:(id)sender;
-- (IBAction)confirm:(id)sender;
+//- (IBAction)confirm:(id)sender;
 
 @end
 
@@ -57,7 +57,7 @@ static NSString * const FIRST = @"firstName";
 
 - (void)setDefaultUserInfo {
     if (kFields < 4) {
-        self.confirmButton.enabled = NO;
+       // self.confirmButton.enabled = NO;
         self.continueButton.enabled = NO;
     }
     
@@ -134,9 +134,9 @@ static NSString * const FIRST = @"firstName";
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:@[userFirst, userLast, phoneNo, emailAddress] forKeys:@[FIRST, LAST, PHONE, EMAIL]];
     [self.proxy appendUserInfo:dictionary];
 }
-
+/*
 - (IBAction)confirm:(id)sender {
     
 }
-
+*/
 @end

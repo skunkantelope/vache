@@ -27,6 +27,7 @@
 		55226531187F745F007A251F /* carnard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652D187F745F007A251F /* carnard.jpg */; };
 		55226532187F745F007A251F /* pick-ups.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652E187F745F007A251F /* pick-ups.jpg */; };
 		55226533187F745F007A251F /* parking-meters.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5522652F187F745F007A251F /* parking-meters.jpg */; };
+		5526EA1E18A757AB000610D8 /* UserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526EA1D18A757AB000610D8 /* UserInfoManager.m */; };
 		5529A4311891D022006C5381 /* dumping.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5529A42D1891D022006C5381 /* dumping.jpg */; };
 		5529A4321891D022006C5381 /* graffiti.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5529A42E1891D022006C5381 /* graffiti.jpg */; };
 		5529A4331891D022006C5381 /* pothole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5529A42F1891D022006C5381 /* pothole.jpg */; };
@@ -46,6 +47,7 @@
 		5571940218906F5700F2AA52 /* ParkingMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571940118906F5700F2AA52 /* ParkingMeterViewController.m */; };
 		5578A2811889EB9D009640CF /* CityNewsParseHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5578A2801889EB9D009640CF /* CityNewsParseHTMLViewController.m */; };
 		5578A285188A043D009640CF /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5578A284188A043D009640CF /* NewsViewController.m */; };
+		559F7ED618A02F5900AB0F86 /* userInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559F7ED518A02F5900AB0F86 /* userInfo.xib */; };
 		55B8E6F818945E920000A0E2 /* TreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8E6F718945E920000A0E2 /* TreeViewController.m */; };
 		55B8E6FB18946FE50000A0E2 /* SurfaceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8E6FA18946FE50000A0E2 /* SurfaceType.m */; };
 		55D5E14E188609FC00C52096 /* DrawOnPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D5E14D188609FC00C52096 /* DrawOnPhotoViewController.m */; };
@@ -93,6 +95,8 @@
 		5522652D187F745F007A251F /* carnard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = carnard.jpg; sourceTree = "<group>"; };
 		5522652E187F745F007A251F /* pick-ups.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pick-ups.jpg"; sourceTree = "<group>"; };
 		5522652F187F745F007A251F /* parking-meters.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "parking-meters.jpg"; sourceTree = "<group>"; };
+		5526EA1C18A757AB000610D8 /* UserInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoManager.h; sourceTree = "<group>"; };
+		5526EA1D18A757AB000610D8 /* UserInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoManager.m; sourceTree = "<group>"; };
 		5529A42D1891D022006C5381 /* dumping.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dumping.jpg; sourceTree = "<group>"; };
 		5529A42E1891D022006C5381 /* graffiti.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = graffiti.jpg; sourceTree = "<group>"; };
 		5529A42F1891D022006C5381 /* pothole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pothole.jpg; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		5578A2801889EB9D009640CF /* CityNewsParseHTMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityNewsParseHTMLViewController.m; sourceTree = "<group>"; };
 		5578A283188A043D009640CF /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		5578A284188A043D009640CF /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		559F7ED518A02F5900AB0F86 /* userInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = userInfo.xib; sourceTree = "<group>"; };
 		55B8E6F618945E920000A0E2 /* TreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeViewController.h; sourceTree = "<group>"; };
 		55B8E6F718945E920000A0E2 /* TreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeViewController.m; sourceTree = "<group>"; };
 		55B8E6F918946FE50000A0E2 /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
@@ -233,6 +238,8 @@
 				55B8E6F718945E920000A0E2 /* TreeViewController.m */,
 				55B8E6F918946FE50000A0E2 /* SurfaceType.h */,
 				55B8E6FA18946FE50000A0E2 /* SurfaceType.m */,
+				5526EA1C18A757AB000610D8 /* UserInfoManager.h */,
+				5526EA1D18A757AB000610D8 /* UserInfoManager.m */,
 				5531075B1899A2E0009960AD /* CityUtility.h */,
 				5531075C1899A2E0009960AD /* CityUtility.m */,
 				5522650E187F7227007A251F /* Images.xcassets */,
@@ -283,6 +290,7 @@
 				5522652D187F745F007A251F /* carnard.jpg */,
 				5522652E187F745F007A251F /* pick-ups.jpg */,
 				5522652F187F745F007A251F /* parking-meters.jpg */,
+				559F7ED518A02F5900AB0F86 /* userInfo.xib */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -402,6 +410,7 @@
 				55319108188338E200827602 /* startView.xib in Resources */,
 				5529A4331891D022006C5381 /* pothole.jpg in Resources */,
 				5529A4321891D022006C5381 /* graffiti.jpg in Resources */,
+				559F7ED618A02F5900AB0F86 /* userInfo.xib in Resources */,
 				55226507187F7227007A251F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +440,7 @@
 				550E6E121887567E001C5FC0 /* GeneralRequestViewController.m in Sources */,
 				550E6E0F188751BF001C5FC0 /* MissedPickupsViewController.m in Sources */,
 				55226500187F7227007A251F /* main.m in Sources */,
+				5526EA1E18A757AB000610D8 /* UserInfoManager.m in Sources */,
 				553107601899A987009960AD /* ReportStatusTableViewController.m in Sources */,
 				5530556F1888BE0400C57A8E /* XPathQuery.m in Sources */,
 				55E25D1E1880CD6400ECADCA /* LargerImage.m in Sources */,
@@ -509,7 +519,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qian Wang (VL24LEA64X)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -530,7 +540,7 @@
 					"/Applications/Xcode51-DP.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -553,7 +563,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Qian Wang (R39YCKF93R)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -568,7 +578,7 @@
 					"/Applications/Xcode51-DP.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -583,7 +593,7 @@
 				GCC_PREFIX_HEADER = "City 311/City 311-Prefix.pch";
 				INFOPLIST_FILE = "City 311/City 311-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -597,7 +607,7 @@
 				GCC_PREFIX_HEADER = "City 311/City 311-Prefix.pch";
 				INFOPLIST_FILE = "City 311/City 311-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -33,7 +33,8 @@
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, frame.size.height - 22.0, frame.size.width, 22.0)];
         //label.backgroundColor = [UIColor clearColor];
-        label.numberOfLines = 1;
+        label.textColor = [UIColor whiteColor];
+        label.numberOfLines = 0;
         label.adjustsFontSizeToFitWidth = YES;
         label.textAlignment = NSTextAlignmentCenter;
         
