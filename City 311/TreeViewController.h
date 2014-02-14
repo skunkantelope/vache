@@ -6,6 +6,11 @@
 //  Copyright (c) 2014 Kelly Kahuna Imagery. All rights reserved.
 //
 
-@interface TreeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+#import <MapKit/MapKit.h>
+
+@interface TreeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UserInfoProxy, CLLocationManagerDelegate, MKMapViewDelegate>
+
+@property (strong, nonatomic) UIImage *userImage;
+@property (copy, nonatomic) NSString *theme;
 
 @end

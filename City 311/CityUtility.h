@@ -8,5 +8,11 @@
 
 @interface CityUtility : NSObject
 
-+ (BOOL)sendJSON:(NSString *)string;
++ (NSMutableArray *)userRecords; // An array of dictionaries. One dictionary stores the information, sending success/failure status, and file location.
++ (BOOL)saveUserRecords:(NSArray *)records; // save user editing.
++ (BOOL)sendJSON:(NSData *)JSON andImage:(id)image;
++ (BOOL)saveRequest:(NSDictionary *)dictionary; 
++ (BOOL)saveJSON:(NSData *)JSON andImage:(id)image atFilePath:(NSString *)path;
++ (BOOL)loadFilesAtPath:(NSString *)path; // send again
+
 @end

@@ -8,9 +8,11 @@
 
 #import <MapKit/MapKit.h>
 
-@interface CityFixoryViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface CityFixoryViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UserInfoProxy, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *map;
-@property (weak, nonatomic) IBOutlet UIImageView *incidentImage;
+
 @property (retain, nonatomic) NSString *guidance;
+@property (strong, nonatomic) UIImage *userImage;
+@property (copy, nonatomic) NSString *theme;
 
 @end

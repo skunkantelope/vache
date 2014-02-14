@@ -45,7 +45,11 @@
     }
     return self;
 }
-
+/*
+- (CGSize)intrinsicContentSize {
+    
+}
+*/
 - (void)dismissSelf {
     [self.delegate presentReportSheetWithItem:self.caption.text];
 }

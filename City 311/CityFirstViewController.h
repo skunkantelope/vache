@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Kelly Kahuna Imagery. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "LargerImage.h"
 
 @interface CityFirstViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, LargerImageDelegate>

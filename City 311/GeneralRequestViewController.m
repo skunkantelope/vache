@@ -7,10 +7,10 @@
 //
 
 #import "GeneralRequestViewController.h"
-#import "CityFirstViewController.h"
 
 @interface GeneralRequestViewController () {
     UITapGestureRecognizer *tapGesture;
+    UserInfoManager *manager;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextView *requestTextView;
@@ -34,9 +34,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    // Set the height of the textview;
-    self.scrollView.frame = CGRectMake(0, 79, 320, self.view.bounds.size.height - 100);
-    self.scrollView.contentSize = CGSizeMake(280, 300);
     
     self.requestTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.requestTextView.layer.borderWidth = 1.0;
@@ -61,7 +58,7 @@
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     // scroll the comment text view to be visible.
     
-    [self.scrollView setContentOffset:CGPointMake(0.0, self.requestTextView.frame.origin.y-kbSize.height+self.requestTextView.bounds.size.height+30) animated:YES];
+    [self.scrollView setContentOffset:CGPointMake(0.0, self.requestTextView.frame.origin.y-kbSize.height+self.requestTextView.bounds.size.height) animated:YES];
 }
 
 - (void)keyboardWasHidden:(NSNotification*)aNotification {
@@ -96,16 +93,55 @@
 }
 
 - (IBAction)send:(id)sender {
+    CALayer *greyLayer = [CALayer layer];
+    greyLayer.opacity = 0.7;
+    greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
+    greyLayer.frame = self.view.bounds;
+    [self.view.layer addSublayer:greyLayer];
     
-        //self.presentingViewController.tabBarController.selectedIndex = 3;
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//    if (viewController.tabBarController) {
-//        NSLog(@"tab bar controller is cool");
-//    }
-/*    if (viewController.cityTabBarController) {
-        NSLog(@"city tab bar controller is cool");
-    }*/
-    [CityUtility sendJSON:@"Hey"];
+    manager = [[UserInfoManager alloc] init];
+    manager.proxy = self;
+    [[NSBundle mainBundle] loadNibNamed:@"userInfo" owner:manager options:nil];
+    [manager setDefaultUserInfo];
+    
+    [self.view addSubview:manager.view];
+    CGRect frame = CGRectMake((320 - manager.view.bounds.size.width)/2, (self.view.frame.size.height - manager.view.bounds.size.height)/2, manager.view.bounds.size.width, manager.view.bounds.size.height);
+    [UIView animateWithDuration:1 animations:^{
+        manager.view.frame = frame;
+    }];
 
+}
+
+- (void)appendUserInfo:(NSDictionary *)userInfo {
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:@[self.theme, self.requestTextView.text] forKeys:@[@"subject", @"discription"]];
+    NSMutableDictionary *savedDictionary = [[NSMutableDictionary alloc] init];
+    [savedDictionary addEntriesFromDictionary:dictionary];
+    
+    [dictionary addEntriesFromDictionary:userInfo];
+    
+    NSError *error;
+    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if (error) {
+        // not able to create JSON.
+        NSLog(@"No JSON String");
+    }
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    if(![CityUtility sendJSON:JSONData andImage:nil]) {
+        // store the failure status
+        [savedDictionary setValue:[NSNumber numberWithBool:true] forKey:@"showButton"];
+        // generate a file path.
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyMMddHHmmss"];
+        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+        
+        [savedDictionary setValue:dateString forKey:@"path"];
+        
+        [CityUtility saveJSON:JSONData andImage:nil atFilePath:dateString];
+    }
+    // after all, save the request
+    [CityUtility saveRequest:savedDictionary];
 }
 @end

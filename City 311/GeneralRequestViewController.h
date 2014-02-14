@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Kelly Kahuna Imagery. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface GeneralRequestViewController : UIViewController <UITextViewDelegate>
+@interface GeneralRequestViewController : UIViewController <UITextViewDelegate, UserInfoProxy>
+@property (copy, nonatomic) NSString *theme;
 
 @end

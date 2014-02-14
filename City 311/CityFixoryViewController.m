@@ -10,15 +10,19 @@
 #import <CoreLocation/CoreLocation.h>
 #import "DrawOnPhotoViewController.h"
 #import "CityUtility.h"
-#import "UserInfoViewController.h"
 
 @interface CityFixoryViewController () {
     UIImage *incidentPhoto;
-    NSMutableDictionary *JSON;
     UITapGestureRecognizer *tapGesture;
     
     BOOL scrollTextView;
+    
+    UserInfoManager *manager;
+    CLLocationManager *locationManager;
+    
+    CLLocationCoordinate2D incidentCoord;
 }
+@property (weak, nonatomic) IBOutlet UIImageView *incidentImage;
 @property (weak, nonatomic) IBOutlet UILabel *instruction;
 @property (weak, nonatomic) IBOutlet UITextView *observation;
 @property (weak, nonatomic) IBOutlet UITextField *landMarks;
@@ -27,9 +31,12 @@
 - (IBAction)cancel:(UIButton *)sender;
 - (IBAction)loadImage:(id)sender;
 
+- (void)startUpdates;
+
 @end
 
 @implementation CityFixoryViewController
+@synthesize userImage=incidentPhoto;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,32 +50,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self startUpdates];
+    
     scrollTextView = FALSE;
     // Do any additional setup after loading the view.
-    self.scrollView.frame = CGRectMake(0, 79, self.view.bounds.size.width, self.view.bounds.size.height - 99);
-    self.scrollView.contentSize = CGSizeMake(280, 650);
     
     self.observation.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.observation.layer.borderWidth = 1.0;
 
     self.instruction.text = self.guidance;
-    // set the map dispaly region.
-    NSLog(@"we are at %f, %f", self.map.userLocation.coordinate.latitude, self.map.userLocation.coordinate.longitude);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 200000, 200000);
-    [self.map setRegion:region animated:YES];
-    // display a drop pin at current user location.
-    MKPointAnnotation *annotation;
-    annotation.coordinate = self.map.userLocation.coordinate;
-    annotation.title = @"Work for me";
-    annotation.subtitle = @"Please!";
-    [self.map addAnnotation:annotation];
-    self.map.showsUserLocation = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.incidentImage.image = incidentPhoto;
+}
+
+- (void)startUpdates {
+    if (locationManager == nil)
+        locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 300;
+    
+    [locationManager startUpdatingLocation];
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
@@ -78,26 +90,53 @@
         CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         // scroll the comment text view to be visible.
         
-        [self.scrollView setContentOffset:CGPointMake(0.0, self.observation.frame.origin.y-kbSize.height+self.observation.bounds.size.height+35) animated:YES];
+        [self.scrollView setContentOffset:CGPointMake(0.0, self.observation.frame.origin.y-kbSize.height+self.observation.bounds.size.height) animated:YES];
     }
    
+}
+
+#pragma mark - CLLocation Manager Delegate.
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = [locations lastObject];
+    NSLog(@"we are at latitude %+.6f, longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 300, 300);
+    [self.map setRegion:region animated:YES];
+    //self.map.showsPointsOfInterest = NO;
+    
+    // display a drop pin at current user location.
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = location.coordinate;
+    annotation.title = @"Incident Location"; // display in a callout.
+    
+    incidentCoord = location.coordinate;
+    [self.map addAnnotation:annotation];
+    
+    //[self.map showAnnotations:@[annotation] animated:YES];
 }
 
 #pragma mark - MKMapView Delegate methods.
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[MKUserLocation class]]) {
-        return nil;
-    }
+
     MKPinAnnotationView *aView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"pin"];
     if (!aView) {
         aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
-        aView.pinColor = MKPinAnnotationColorRed;
+        aView.pinColor = MKPinAnnotationColorPurple;
         aView.animatesDrop = YES;
+        aView.draggable = YES;
+
         return aView;
     }
     aView.annotation = annotation;
     return aView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
+    
+    if (newState == MKAnnotationViewDragStateEnding) {
+        incidentCoord = view.annotation.coordinate;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,15 +167,54 @@
     greyLayer.frame = self.view.bounds;
     [self.view.layer addSublayer:greyLayer];
     
-    UserInfoViewController *viewController = [[UserInfoViewController alloc] initWithNibName:@"userInfo" bundle:nil];
-    CGRect frame = CGRectMake((320 - viewController.view.bounds.size.width)/2, (self.view.frame.size.height - viewController.view.bounds.size.height)/2, viewController.view.bounds.size.width, viewController.view.bounds.size.height);
-    viewController.view.frame = frame;
-    //[self.view addSubview:viewController.view];
-    [self presentViewController:viewController animated:YES completion:nil];
+    manager = [[UserInfoManager alloc] init];
+    manager.proxy = self;
+    [[NSBundle mainBundle] loadNibNamed:@"userInfo" owner:manager options:nil];
+    [manager setDefaultUserInfo];
+
+    [self.view addSubview:manager.view];
+    CGRect frame = CGRectMake((320 - manager.view.bounds.size.width)/2, (self.view.frame.size.height - manager.view.bounds.size.height)/2, manager.view.bounds.size.width, manager.view.bounds.size.height);
+    [UIView animateWithDuration:1 animations:^{
+        manager.view.frame = frame;
+    }];
     
 /*    if ([CityUtility sendJSON:@"hi"]) {
-        self.tabBarController.selectedIndex = 3;
+        self.tabBarController.selectedIndex = 2;
     }*/
+}
+
+- (void)appendUserInfo:(NSDictionary *)userInfo {
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:@[self.theme, self.landMarks.text, [NSString stringWithFormat:@"lat - %f; long - %f", incidentCoord.latitude, incidentCoord.longitude], self.observation.text] forKeys:@[@"subject", @"landmark", @"location", @"discription"]];
+    NSMutableDictionary *savedDictionary = [[NSMutableDictionary alloc] init];
+    [savedDictionary addEntriesFromDictionary:dictionary];
+    
+    [dictionary addEntriesFromDictionary:userInfo];
+    
+    NSError *error;
+    
+    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if (error) {
+        // not able to create JSON. 
+        NSLog(@"No JSON String");
+    }
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+
+    if(![CityUtility sendJSON:JSONData andImage:incidentPhoto]) {
+        // store the failure status
+        [savedDictionary setValue:[NSNumber numberWithBool:true] forKey:@"showButton"];
+        // generate a file path.
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyMMddHHmmss"];
+        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+        
+        [savedDictionary setValue:dateString forKey:@"path"];
+        
+        [CityUtility saveJSON:JSONData andImage:incidentPhoto atFilePath:dateString];
+    }
+    // after all, save the request
+    [CityUtility saveRequest:savedDictionary];
 }
 
 - (IBAction)cancel:(UIButton *)sender {
@@ -145,27 +223,12 @@
 
 - (IBAction)loadImage:(id)sender {
     
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     [self presentViewController:imagePicker animated:NO completion:nil];
-//    [self performSegueWithIdentifier:@"PickPhoto" sender:nil];
-        
-/*        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.5
-                                  delay:0
-                                options:UIViewAnimationOptionRepeat
-                             animations: ^{
-                                 glitterCircle.backgroundColor = [UIColor colorWithHue:0.3 saturation:1.0 brightness:0.7 alpha:1.0];
-                                 
-                             }
-                             completion:^(BOOL finished) {
-                                 glitterCircle.backgroundColor = [UIColor colorWithHue:0.0 saturation:1.0 brightness:0.7 alpha:1.0];
-                                 
-                             }];
-        });
-    });*/
+
 }
+
 - (void)resignTextView {
     [self.observation resignFirstResponder];
     [self.view removeGestureRecognizer:tapGesture];
@@ -175,6 +238,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
 }
 
 #pragma mark - Text view delegate

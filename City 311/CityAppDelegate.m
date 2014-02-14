@@ -12,10 +12,11 @@
 @implementation CityAppDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    CityFirstViewController *firstController = tabBarController.viewControllers[0];
-    if  (firstController.coverView) {
-        [firstController.coverView removeFromSuperview];
-        firstController.coverView = nil;
+    UINavigationController *firstController = tabBarController.viewControllers[0];
+    CityFirstViewController *rootViewController = (CityFirstViewController*)firstController.topViewController;
+    if  (rootViewController.coverView) {
+        [rootViewController.coverView removeFromSuperview];
+        rootViewController.coverView = nil;
     }
     return YES;
 }

@@ -7,11 +7,20 @@
 //
 
 #import "ParkingMeterViewController.h"
+#import "DrawOnPhotoViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface ParkingMeterViewController () {
+    UIImage *incidentPhoto;
     UITapGestureRecognizer *tapGesture;
     BOOL scrollTextView;
+    UserInfoManager *manager;
+    
+    CLLocationManager *locationManager;
+    CLLocationCoordinate2D incidentCoord;
 }
+@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (weak, nonatomic) IBOutlet UIImageView *incidentImage;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
 @property (weak, nonatomic) IBOutlet UITextField *IDField;
 @property (weak, nonatomic) IBOutlet UIScrollView *meterScroll;
@@ -20,9 +29,12 @@
 - (IBAction)sendReport:(id)sender;
 - (IBAction)chooseProblemType:(id)sender;
 
+- (void)startUpdates;
+
 @end
 
 @implementation ParkingMeterViewController
+@synthesize userImage=incidentPhoto;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,10 +48,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self startUpdates];
+    
     scrollTextView = FALSE;
     // Do any additional setup after loading the view.
-    self.meterScroll.frame = CGRectMake(0, 162, self.view.bounds.size.width, self.view.bounds.size.height - 180);
-    self.meterScroll.contentSize = CGSizeMake(280, 615);
+ //   self.meterScroll.frame = CGRectMake(0, 162, self.view.bounds.size.width, self.view.bounds.size.height - 180);
+ //   self.meterScroll.contentSize = CGSizeMake(280, 615);
     
     self.observation.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.observation.layer.borderWidth = 1.0;
@@ -47,8 +62,66 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
 }
 
+- (void)startUpdates {
+    if (locationManager == nil)
+        locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 300;
+    
+    [locationManager startUpdatingLocation];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.incidentImage.image = incidentPhoto;
+}
+
+#pragma mark - CLLocation Manager Delegate.
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = [locations lastObject];
+    NSLog(@"we are at latitude %+.6f, longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 300, 300);
+    [self.map setRegion:region animated:YES];
+    //self.map.showsPointsOfInterest = NO;
+    
+    // display a drop pin at current user location.
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = location.coordinate;
+    annotation.title = @"Incident Location"; // display in a callout.
+    
+    [self.map addAnnotation:annotation];
+    
+    //[self.map showAnnotations:@[annotation] animated:YES];
+}
+
+#pragma mark - MKMapView Delegate methods.
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    MKPinAnnotationView *aView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"pin"];
+    if (!aView) {
+        aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
+        aView.pinColor = MKPinAnnotationColorPurple;
+        aView.animatesDrop = YES;
+        aView.draggable = YES;
+
+        return aView;
+    }
+    aView.annotation = annotation;
+    return aView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
+    
+    if (newState == MKAnnotationViewDragStateEnding) {
+        incidentCoord = view.annotation.coordinate;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +137,7 @@
         CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     // scroll the comment text view to be visible.
     
-        [self.meterScroll setContentOffset:CGPointMake(0.0, self.observation.frame.origin.y-kbSize.height+self.observation.bounds.size.height*2 + 25) animated:YES];
+        [self.meterScroll setContentOffset:CGPointMake(0.0, self.observation.frame.origin.y-kbSize.height+self.observation.bounds.size.height) animated:YES];
     }
 }
 
@@ -98,6 +171,10 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"DrawPhoto"]) {
+        DrawOnPhotoViewController *viewController = [segue destinationViewController];
+        viewController.image = incidentPhoto;
+    }
 }
 
 
@@ -106,9 +183,79 @@
 }
 
 - (IBAction)sendReport:(id)sender {
+    CALayer *greyLayer = [CALayer layer];
+    greyLayer.opacity = 0.7;
+    greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
+    greyLayer.frame = self.view.bounds;
+    [self.view.layer addSublayer:greyLayer];
+    
+    manager = [[UserInfoManager alloc] init];
+    manager.proxy = self;
+    [[NSBundle mainBundle] loadNibNamed:@"userInfo" owner:manager options:nil];
+    [manager setDefaultUserInfo];
+    
+    [self.view addSubview:manager.view];
+    CGRect frame = CGRectMake((320 - manager.view.bounds.size.width)/2, (self.view.frame.size.height - manager.view.bounds.size.height)/2, manager.view.bounds.size.width, manager.view.bounds.size.height);
+    [UIView animateWithDuration:1 animations:^{
+        manager.view.frame = frame;
+    }];
+    
+}
+
+- (void)appendUserInfo:(NSDictionary *)userInfo {
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:@[self.theme, self.IDField.text, self.problemLabel.text, self.locationField.text, [NSString stringWithFormat:@"lat - %f; long - %f", incidentCoord.latitude, incidentCoord.longitude], self.observation.text] forKeys:@[@"subject", @"ID", @"problem", @"landmark", @"location", @"discription"]];
+    NSMutableDictionary *savedDictionary = [[NSMutableDictionary alloc] init];
+    [savedDictionary addEntriesFromDictionary:dictionary];
+    
+    [dictionary addEntriesFromDictionary:userInfo];
+    
+    NSError *error;
+    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if (error) {
+        // not able to create JSON.
+        NSLog(@"No JSON String");
+    }
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    if(![CityUtility sendJSON:JSONData andImage:incidentPhoto]) {
+        // store the failure status
+        [savedDictionary setValue:[NSNumber numberWithBool:true] forKey:@"showButton"];
+        // generate a file path.
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyMMddHHmmss"];
+        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+        
+        [savedDictionary setValue:dateString forKey:@"path"];
+        
+        [CityUtility saveJSON:JSONData andImage:incidentPhoto atFilePath:dateString];
+    }
+    // after all, save the request
+    [CityUtility saveRequest:savedDictionary];
 }
 
 - (IBAction)chooseProblemType:(id)sender {
     [self performSegueWithIdentifier:@"ShowProblems" sender:self];
+}
+
+- (IBAction)loadImage:(id)sender {
+    
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    [self presentViewController:imagePicker animated:NO completion:nil];
+}
+
+#pragma UIImagePickerControllerDelegate methods
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    incidentPhoto = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self dismissViewControllerAnimated:YES completion: ^(void) {
+        [self performSegueWithIdentifier:@"DrawPhoto" sender:nil];
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Kelly Kahuna Imagery. All rights reserved.
 //
 
-@interface MissedPickupsViewController : UIViewController <UITextFieldDelegate>
+@interface MissedPickupsViewController : UIViewController <UITextFieldDelegate, UserInfoProxy>
 
+@property (copy, nonatomic) NSString *theme;
 @end

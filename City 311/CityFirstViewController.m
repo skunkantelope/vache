@@ -8,6 +8,11 @@
 
 #import "CityFirstViewController.h"
 #import "CityFixoryViewController.h"
+#import "ParkingMeterViewController.h"
+#import "TreeViewController.h"
+#import "PotholeViewController.h"
+#import "MissedPickupsViewController.h"
+#import "GeneralRequestViewController.h"
 
 enum Fixory {
     Graffiti, Pothole, Meter, Dumping,
@@ -39,7 +44,7 @@ enum Fixory {
     if (!isFirstLoad) {
         
         [[NSBundle mainBundle] loadNibNamed:@"startView" owner:self options:nil];
-        self.coverView.frame = CGRectMake(0, 0, 320, self.view.bounds.size.height - 49);
+        self.coverView.frame = self.view.bounds;
         [self.view addSubview:self.coverView];
         isFirstLoad = YES;
     }
@@ -140,7 +145,10 @@ enum Fixory {
         }
         
     }
-    [self.view addSubview:topImage];
+    [UIView animateWithDuration:1 animations:^{
+        [self.view addSubview:topImage];
+    }];
+    
 
     // Step 3. Controller view receives tap event. When tapped, remove the layer created in step 1. Remove the view created in step 2. See the tap gesture method.
     [self.view addGestureRecognizer:tapGesture];
@@ -187,12 +195,40 @@ enum Fixory {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"PresentReportSheet"]) {
         CityFixoryViewController *fixorySheet = segue.destinationViewController;
+        fixorySheet.theme = (NSString *)sender;
         enum Fixory k = Dumping;
         if ([(NSString *)sender isEqualToString:@"Graffiti"]) {
             k = Graffiti;
         }
         fixorySheet.guidance = [CityFirstViewController instructionFor:k];
+        return;
     }
+    if ([segue.identifier isEqualToString:@"Pickups"]) {
+        MissedPickupsViewController *viewController = segue.destinationViewController;
+        viewController.theme = @"No Pickups Noticed";
+        return;
+    }
+    if ([segue.identifier isEqualToString:@"Request"]) {
+        GeneralRequestViewController *viewController = segue.destinationViewController;
+        viewController.theme = @"Service Request";
+        return;
+    }
+    if ([segue.identifier isEqualToString:@"ParkingMeter"]) {
+        GeneralRequestViewController *viewController = segue.destinationViewController;
+        viewController.theme = @"Parking Meter Problem";
+        return;
+    }
+    if ([segue.identifier isEqualToString:@"Pothole"]) {
+        GeneralRequestViewController *viewController = segue.destinationViewController;
+        viewController.theme = @"Pothole Fix";
+        return;
+    }
+    if ([segue.identifier isEqualToString:@"PlantTree"]) {
+        GeneralRequestViewController *viewController = segue.destinationViewController;
+        viewController.theme = @"Missing Tree Found";
+        return;
+    }
+
 }
 
 @end

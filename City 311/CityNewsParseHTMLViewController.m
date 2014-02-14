@@ -16,7 +16,8 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-//- (void)loadNews;
+
+- (void)loadNews;
 @end
 
 @implementation CityNewsParseHTMLViewController
@@ -29,37 +30,9 @@
     }
     return self;
 }
-/*
+
 - (void)loadNews {
-    NSURL *cityNewsURL = [NSURL URLWithString:@"http://www.cityofberkeley.info/PressReleaseMain.aspx"];
-    NSData *newsHtmlData = [NSData dataWithContentsOfURL:cityNewsURL];
-    
-    TFHpple *newsParser = [TFHpple hppleWithHTMLData:newsHtmlData];
-    
-    NSString *xPathQuery = @"//div[@id='ctl00_Col2ContentPlaceholder_pnlMain']/ul/li/a";
-    NSArray *newsNodes = [newsParser searchWithXPathQuery:xPathQuery];
-    
-    for (TFHppleElement *element in newsNodes) {
-        CityNews *aNews = [[CityNews alloc] init];
-        aNews.title = [[element firstChild] content];
-        aNews.link = [@"http://www.cityofberkeley.info" stringByAppendingString: [self findNewsContent:[element objectForKey:@"href"]]];
-        [newsFeed addObject:aNews];
-    }
-    
-}
-*/
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    newsFeed = [[NSMutableArray alloc] initWithCapacity:2];
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSURL *cityNewsURL = [NSURL URLWithString:@"http://www.cityofberkeley.info/PressReleaseMain.aspx"];
         NSData *newsHtmlData = [NSData dataWithContentsOfURL:cityNewsURL];
@@ -79,10 +52,28 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activityIndicator stopAnimating];
             [self.tableView reloadData];
-
+            
         });
     });
-   // [self loadNews];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (newsFeed.count < 1) {
+        [self loadNews];
+    }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    newsFeed = [[NSMutableArray alloc] initWithCapacity:2];
+    [self loadNews];
 
 }
 

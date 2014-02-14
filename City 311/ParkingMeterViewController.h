@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 Kelly Kahuna Imagery. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface ParkingMeterViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+@interface ParkingMeterViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UserInfoProxy, MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *problemLabel;
+@property (strong, nonatomic) UIImage *userImage;
+@property (copy, nonatomic) NSString *theme;
 
 @end

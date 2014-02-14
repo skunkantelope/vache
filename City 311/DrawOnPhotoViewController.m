@@ -172,7 +172,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -180,27 +180,31 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"ShowImage"]) {
-        UIGraphicsEndImageContext();
-        
-        CityFixoryViewController *viewController = [segue destinationViewController];
-        
-        UIGraphicsBeginImageContext(self.image.size);
-        [self.image drawInRect:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
-        CGContextRef cgContext = UIGraphicsGetCurrentContext();
-        [drawing.layer renderInContext:cgContext];
-        
-        UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-        viewController.incidentImage.image = theImage;
-        
-        UIGraphicsEndImageContext();
-    }
 }
-
+*/
 - (IBAction)returnImage:(id)sender {
     // send a notification to presentingViewController to receive the image.
     //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    [self performSegueWithIdentifier:@"ShowImage" sender:nil];
+    // method 1:
+    UIGraphicsEndImageContext();
+    
+    UIGraphicsBeginImageContext(drawing.bounds.size);
+    [self.image drawInRect:CGRectMake(0, 0, drawing.bounds.size.width, drawing.bounds.size.height)];
+    CGContextRef cgContext = UIGraphicsGetCurrentContext();
+    [drawing.layer renderInContext:cgContext];
+    
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+
+    // method 2:
+ /*   CGContextSetBlendMode(context, kCGBlendModeMultiply);
+    [self.image drawInRect:CGRectMake(0, 0, drawing.bounds.size.width, drawing.bounds.size.height)];
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+  */
+    [(CityFixoryViewController *)self.presentingViewController setUserImage:theImage];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (IBAction)switchBrushEraser:(id)sender {
