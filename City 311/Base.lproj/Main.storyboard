@@ -145,10 +145,9 @@
                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w3m-Tk-YwO">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="w3m-Tk-YwO">
                                         <rect key="frame" x="20" y="299" width="280" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.73725491759999995" green="0.71372550729999995" blue="0.65882354970000001" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="280" id="M3S-GC-9KT"/>
                                         </constraints>
@@ -548,10 +547,9 @@
                                             <outlet property="delegate" destination="8r6-Mu-7be" id="5Ch-SL-gyU"/>
                                         </connections>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6WI-Gj-h0t">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="6WI-Gj-h0t">
                                         <rect key="frame" x="20" y="302" width="280" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.73725491759999995" green="0.71372550729999995" blue="0.65882354970000001" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="280" id="or2-GJ-cwk"/>
                                         </constraints>
@@ -851,10 +849,9 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hoO-3z-OM2">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="hoO-3z-OM2">
                                         <rect key="frame" x="20" y="366" width="280" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.73725491759999995" green="0.71372550729999995" blue="0.65882354970000001" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="280" id="0w8-Sx-94f"/>
                                         </constraints>
@@ -1259,6 +1256,7 @@
                             <constraint firstAttribute="trailing" secondItem="BPm-dz-6ZD" secondAttribute="trailing" constant="20" symbolic="YES" id="w3a-FT-2RP"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="drawingButton" destination="UTF-cL-EvW" id="QUE-Oc-NT1"/>
@@ -1617,10 +1615,9 @@
                                             <outlet property="delegate" destination="tvi-tO-Jqw" id="JFm-JN-Mhn"/>
                                         </connections>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9I6-rK-N86">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="9I6-rK-N86">
                                         <rect key="frame" x="20" y="348" width="280" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.73725491759999995" green="0.71372550729999995" blue="0.65882354970000001" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="280" id="eJz-n8-O5g"/>
                                         </constraints>
@@ -1846,6 +1843,7 @@
         <image name="news" width="30" height="30"/>
         <image name="parking-meters.jpg" width="601" height="826"/>
         <image name="pen.png" width="30" height="40"/>
+        <image name="photo.png" width="280" height="280"/>
         <image name="pick-ups.jpg" width="538" height="434"/>
         <image name="pothole.jpg" width="357" height="309"/>
         <image name="report" width="30" height="30"/>

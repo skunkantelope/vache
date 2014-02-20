@@ -13,7 +13,6 @@
 @interface PotholeViewController () {
     UIImage *incidentPhoto;
     UITapGestureRecognizer *tapGesture;
-    BOOL scrollTextView;
     UserInfoManager *manager;
     NSString *property;
     
@@ -21,6 +20,8 @@
     CLLocationManager *locationManager;
     
     CLLocationCoordinate2D incidentCoord;
+    
+    UIView *firstResponder;
 }
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
@@ -54,7 +55,6 @@
     [super viewDidLoad];
     [self startUpdates];
     
-    scrollTextView = FALSE;
     // Do any additional setup after loading the view.
    // self.potholeScroll.frame = CGRectMake(0, 160, self.view.bounds.size.width, self.view.bounds.size.height - 193);
    // self.potholeScroll.contentSize = CGSizeMake(280, 615);
@@ -65,10 +65,11 @@
     circle = [[UIView alloc] initWithFrame:CGRectZero];
     circle.layer.borderWidth = 1;
     circle.layer.borderColor = [[UIColor orangeColor] CGColor];
-    [self.view addSubview:circle];
+    [self.potholeScroll addSubview:circle];
     
     property = @"";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)startUpdates {
@@ -81,11 +82,11 @@
     
     [locationManager startUpdatingLocation];
 }
-
+/*
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
+*/
 - (void)viewDidAppear:(BOOL)animated {
     self.incidentImage.image = incidentPhoto;
 }
@@ -141,18 +142,38 @@
 
 - (void)resignTextView {
     [self.observation resignFirstResponder];
+    firstResponder = nil;
     [self.view removeGestureRecognizer:tapGesture];
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
-    if (scrollTextView) {
-        NSDictionary* info = [aNotification userInfo];
-        CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        // scroll the comment text view to be visible.
+
+    NSDictionary* info = [aNotification userInfo];
+    CGRect keyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    NSLog(@"keyboard frame %@", NSStringFromCGRect(keyboardRect));
+    
+    
+    // scroll the comment text view visible. (keyboardRect.size.height - self.observation.frame.size.height) this much needs get scrolled up.
+    float yOffset = self.potholeScroll.frame.origin.y + firstResponder.frame.origin.y + firstResponder.frame.size.height - keyboardRect.origin.y;
+    NSLog(@"how much is covered %f", yOffset);
+    if (yOffset > 0.0) {
+        UIEdgeInsets contentInset = self.potholeScroll.contentInset;
+        contentInset.bottom = keyboardRect.size.height;
+        [self.potholeScroll setContentInset:contentInset];
         
-        [self.potholeScroll setContentOffset:CGPointMake(0.0, self.observation.frame.origin.y-kbSize.height+self.observation.bounds.size.height) animated:YES];
+        [self.potholeScroll setContentOffset:CGPointMake(0.0, yOffset) animated:YES];
     }
+
+}
+
+- (void)keyboardWasHidden:(NSNotification*)aNotification {
+    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.potholeScroll.contentInset = UIEdgeInsetsZero;
+                     } completion:nil];
+    
 }
 
 #pragma mark - Navigation
@@ -171,27 +192,37 @@
 #pragma mark - Text field delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    firstResponder = nil;
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    firstResponder = textField;
 }
 
 #pragma mark - Text view delegate
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    scrollTextView = TRUE;
+    NSLog(@"I am here");
+    firstResponder = textView;
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignTextView)];
     tapGesture.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tapGesture];
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    scrollTextView = FALSE;
-}
-
 - (IBAction)sendReport:(id)sender {
-    CALayer *greyLayer = [CALayer layer];
-    greyLayer.opacity = 0.7;
-    greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
-    greyLayer.frame = self.view.bounds;
-    [self.view.layer addSublayer:greyLayer];
+    UIView *maskView = [[UIView alloc] init];
+    maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+    [self.view addSubview:maskView];
+    [maskView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(maskView);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[maskView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[maskView]|" options:0 metrics:nil views:views]];
+    /*   CALayer *greyLayer = [CALayer layer];
+     greyLayer.opacity = 0.7;
+     greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
+     greyLayer.frame = self.view.bounds;
+     [self.view.layer addSublayer:greyLayer];*/
     
     manager = [[UserInfoManager alloc] init];
     manager.proxy = self;
@@ -199,10 +230,19 @@
     [manager setDefaultUserInfo];
     
     [self.view addSubview:manager.view];
-    CGRect frame = CGRectMake((320 - manager.view.bounds.size.width)/2, (self.view.frame.size.height - manager.view.bounds.size.height)/2, manager.view.bounds.size.width, manager.view.bounds.size.height);
-    [UIView animateWithDuration:1 animations:^{
-        manager.view.frame = frame;
-    }];
+    
+    [manager.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:manager.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:manager.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:240.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:manager.view
+                                                          attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:manager.view
+                                                          attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
 }
 
 - (void)appendUserInfo:(NSDictionary *)userInfo {

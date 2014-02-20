@@ -74,6 +74,7 @@
     ReportStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StatusCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    cell.statusButton.tag = indexPath.row;
     NSDictionary *request = records[indexPath.row];
     cell.title.text = [request valueForKey:@"subject"];
     NSString *moreText = [request valueForKey:@"landmark"];
@@ -144,11 +145,19 @@
 
 - (IBAction)sendReport:(id)sender {
     // need to find the indexpath;
-   // UIButton *button = (UIButton*) sender;
+    UIButton *button = (UIButton*) sender;
+ //   UIView *contentView = [button superview];
+ //   ReportStatusCell *cell = (ReportStatusCell*)[contentView superview];
 
-//    [self.tableView indexPathForRowAtPoint:[button ]
-//    if ([CityUtility loadFilesAtPath:<#(NSString *)#>]) {
-//        <#statements#>
-//    }
+ //   NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSMutableDictionary *dictionary = records[button.tag];
+    if ([CityUtility loadFilesAtPath:[dictionary valueForKey:@"path"]]) {
+        // remove the button.
+        ReportStatusCell *cell = (ReportStatusCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+        [cell.statusButton removeFromSuperview];
+        [dictionary removeObjectsForKeys:@[@"path", @"showButton"]];
+        [CityUtility saveUserRecords:records];
+    }
 }
+
 @end

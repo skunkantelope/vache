@@ -59,7 +59,7 @@
     self.commentTextView.layer.borderWidth = 1.0;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
 
 }
 
@@ -73,11 +73,11 @@
     
     [locationManager startUpdatingLocation];
 }
-
+/*
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
+*/
 - (void)viewDidAppear:(BOOL)animated {
     self.incidentImage.image = incidentPhoto;
 }
@@ -134,23 +134,30 @@
 {
     if (scrollTextView) {
         NSDictionary* info = [aNotification userInfo];
-        CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        // scroll the comment text view to be visible.
-
-        [self.treeScrollView setContentOffset:CGPointMake(0.0, self.commentTextView.frame.origin.y-kbSize.height+self.commentTextView.bounds.size.height) animated:YES];
+        CGRect keyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+        //  NSLog(@"keyboard frame %@", NSStringFromCGRect(keyboardRect));
+        UIEdgeInsets contentInset = self.treeScrollView.contentInset;
+        contentInset.bottom = keyboardRect.size.height;
+        [self.treeScrollView setContentInset:contentInset];
+        
+        // scroll the comment text view visible. (keyboardRect.size.height - self.observation.frame.size.height) this much needs get scrolled up.
+        [self.treeScrollView setContentOffset:CGPointMake(0.0, self.treeScrollView.frame.origin.y + self.commentTextView.frame.origin.y + self.commentTextView.frame.size.height - keyboardRect.origin.y) animated:YES];
     }
+
   
 }
 
 - (void)keyboardWasHidden:(NSNotification*)aNotification {
-    //[self.treeScrollView scrollRectToVisible:self.commentTextView.frame animated:YES];
-  //  if (scrollTextView)
-        //[self.treeScrollView setContentOffset:currentOffSet animated:YES];
-        //[self.treeScrollView setContentOffset:CGPointMake(0, self.treeScrollView.contentSize.height - self.commentTextView.bounds.size.height) animated:YES];
+    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         [self.treeScrollView setContentInset:UIEdgeInsetsZero];
+                     } completion:nil];
 }
 
 - (void)resignTextView {
     [self.commentTextView resignFirstResponder];
+    scrollTextView = FALSE;
     [self.view removeGestureRecognizer:tapGesture];
 }
 
@@ -167,10 +174,6 @@
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignTextView)];
     tapGesture.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tapGesture];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-      scrollTextView = FALSE;
 }
 
 #pragma mark - Navigation
@@ -191,11 +194,15 @@
 }
 
 - (IBAction)send:(id)sender {
-    CALayer *greyLayer = [CALayer layer];
-    greyLayer.opacity = 0.7;
-    greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
-    greyLayer.frame = self.view.bounds;
-    [self.view.layer addSublayer:greyLayer];
+    UIView *maskView = [[UIView alloc] init];
+    maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+    [self.view addSubview:maskView];
+    [maskView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(maskView);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[maskView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[maskView]|" options:0 metrics:nil views:views]];
+
     
     manager = [[UserInfoManager alloc] init];
     manager.proxy = self;
@@ -203,11 +210,20 @@
     [manager setDefaultUserInfo];
     
     [self.view addSubview:manager.view];
-    CGRect frame = CGRectMake((320 - manager.view.bounds.size.width)/2, (self.view.frame.size.height - manager.view.bounds.size.height)/2, manager.view.bounds.size.width, manager.view.bounds.size.height);
-    [UIView animateWithDuration:1 animations:^{
-        manager.view.frame = frame;
-    }];
     
+    [manager.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:manager.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:manager.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:240.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:manager.view
+                                                          attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:manager.view
+                                                          attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+
 }
 
 - (void)appendUserInfo:(NSDictionary *)userInfo {

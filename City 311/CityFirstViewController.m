@@ -21,7 +21,7 @@ enum Fixory {
 @interface CityFirstViewController () {
     NSArray *fixory;
     NSArray *captions;
-    CALayer *greyLayer;
+    UIView *maskView;
     LargerImage *topImage;
     UITapGestureRecognizer *tapGesture;
     
@@ -54,11 +54,8 @@ enum Fixory {
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnGray:)];
     tapGesture.numberOfTapsRequired = 1;
     
-    greyLayer = [CALayer layer];
-    greyLayer.opacity = 0.7;
-    greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
-    greyLayer.frame = self.view.bounds;
-    
+    maskView = [[UIView alloc] init];
+    maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
     // create the eight LargerImage objects.
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showReportStatusToUser) name:@"ShowStatusTab" object:nil];
@@ -94,7 +91,7 @@ enum Fixory {
 - (void)tapOnGray:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded) {
         [topImage removeFromSuperview];
-        [greyLayer removeFromSuperlayer];
+        [maskView removeFromSuperview];
         [self.view removeGestureRecognizer:tapGesture];
     }
 
@@ -127,9 +124,16 @@ enum Fixory {
     
     // special effect - animate to a large display of selected image.
     // Step 1. Add one grey transparent layer to controller view. See it in viewDidLoad method.
-    [self.view.layer addSublayer:greyLayer];
+    [self.view addSubview:maskView];
+    // set constraints for maskView;
+    [maskView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(maskView);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[maskView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[maskView]|" options:0 metrics:nil views:views]];
+
     // Step 2. Add a view to controller view. Center the view.
-    topImage = [[LargerImage alloc] initWithFrame:CGRectMake(70.0, 100.0, 180.0, self.view.bounds.size.height - 100.0 - 49.0 - 50.0)];
+    topImage = [[LargerImage alloc] initWithFrame:CGRectMake(0.0, 0.0, 300, 199)];
     topImage.delegate = self;
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 
@@ -145,22 +149,29 @@ enum Fixory {
         }
         
     }
-    [UIView animateWithDuration:1 animations:^{
-        [self.view addSubview:topImage];
-    }];
+
+    [self.view addSubview:topImage];
+    // place the topImage.
+    [topImage setTranslatesAutoresizingMaskIntoConstraints:NO];
+    // pin width.
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[topImage(==300)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(topImage)]];
+    // pin height.
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:topImage attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:199.00]];
     
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:topImage attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:topImage attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
 
     // Step 3. Controller view receives tap event. When tapped, remove the layer created in step 1. Remove the view created in step 2. See the tap gesture method.
     [self.view addGestureRecognizer:tapGesture];
     // Step 4. When the view receives tap, brings the CityFixoryViewController. Create a subclass of UIView, use protocol method, set this view controller to be a delegate that does presenting modal view transition.
-    
+    NSLog(@"view frame %@", NSStringFromCGRect(self.view.frame));
 }
 
 #pragma mark - LargerImageDelegateMethod
 - (void)presentReportSheetWithItem:(NSString *)item {
     NSLog(@"scene %@", item);
     [topImage removeFromSuperview];
-    [greyLayer removeFromSuperlayer];
+    [maskView removeFromSuperview];
     if ([item isEqualToString:@"Missed Pick-ups"]) {
         [self performSegueWithIdentifier:@"Pickups" sender:item];
         return;

@@ -18,6 +18,9 @@
     BOOL start;
     CGContextRef context;
     UIView *drawing;
+    
+    UIImage *pen;
+    UIImage *eraser;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *drawingButton;
@@ -46,7 +49,7 @@
     float h = self.image.size.height;
     
     const float width_max = 280;
-    float height_max = self.view.bounds.size.height - 120;
+    float height_max = self.view.frame.size.height - 120;
     CGRect rect;
     if (w >= h) {
         float height = width_max * h / w;
@@ -77,6 +80,9 @@
     point0 = CGPointMake(-3.0, -3.0);
     point1 = point0;
     point2 = point1;
+    
+    pen = [UIImage imageNamed:@"pen"];
+    eraser = [UIImage imageNamed:@"eraser"];
 }
 
     // Two methods.
@@ -163,7 +169,9 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    point0 = CGPointMake(-3.0, -3.0);
+    point1 = point0;
+    point2 = point1;
 }
 
 - (void)didReceiveMemoryWarning
@@ -209,13 +217,19 @@
 
 - (IBAction)switchBrushEraser:(id)sender {
     if (draw) {
-        self.drawingButton.backgroundColor = [UIColor yellowColor];
+        //self.drawingButton.backgroundColor = [UIColor yellowColor];
+        [self.drawingButton setImage:pen forState:UIControlStateNormal];
         draw = false;
        
     } else {
-        self.drawingButton.backgroundColor = [UIColor greenColor];
+        //self.drawingButton.backgroundColor = [UIColor greenColor];
+        [self.drawingButton setImage:eraser forState:UIControlStateNormal];
         draw = true;
     }
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
+}
 @end

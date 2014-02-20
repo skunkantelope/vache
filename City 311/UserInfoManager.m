@@ -65,6 +65,7 @@ static NSString * const FIRST = @"firstName";
     self.email.placeholder = emailAddress;
     self.lastName.placeholder = userLast;
     self.firstName.placeholder = userFirst;
+    
 }
 
 #pragma mark - Text field delegate
@@ -117,6 +118,9 @@ static NSString * const FIRST = @"firstName";
             [defaults setObject:userText forKey:FIRST];
         }
     }
+    if (kFields == 4) {
+        self.continueButton.enabled = YES;
+    }
 }
 /*
  #pragma mark - Navigation
@@ -131,6 +135,7 @@ static NSString * const FIRST = @"firstName";
 
 - (IBAction)continue:(id)sender {
     // send placeholder text which is instance string variables.
+    NSLog(@"clicked.");
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:@[userFirst, userLast, phoneNo, emailAddress] forKeys:@[FIRST, LAST, PHONE, EMAIL]];
     [self.proxy appendUserInfo:dictionary];
 }

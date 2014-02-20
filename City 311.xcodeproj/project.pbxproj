@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		550E6E0F188751BF001C5FC0 /* MissedPickupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550E6E0E188751BF001C5FC0 /* MissedPickupsViewController.m */; };
 		550E6E121887567E001C5FC0 /* GeneralRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550E6E111887567E001C5FC0 /* GeneralRequestViewController.m */; };
+		551070ED18AD618400018DAD /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 551070EC18AD618400018DAD /* cover.png */; };
 		552264F4187F7227007A251F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F3187F7227007A251F /* Foundation.framework */; };
 		552264F6187F7227007A251F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F5187F7227007A251F /* CoreGraphics.framework */; };
 		552264F8187F7227007A251F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F7187F7227007A251F /* UIKit.framework */; };
@@ -51,10 +52,13 @@
 		55B8E6F818945E920000A0E2 /* TreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8E6F718945E920000A0E2 /* TreeViewController.m */; };
 		55B8E6FB18946FE50000A0E2 /* SurfaceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8E6FA18946FE50000A0E2 /* SurfaceType.m */; };
 		55D5E14E188609FC00C52096 /* DrawOnPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D5E14D188609FC00C52096 /* DrawOnPhotoViewController.m */; };
+		55D8AE8C18B69C92006C7E7C /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D8AE8B18B69C92006C7E7C /* photo.png */; };
 		55E25D1B1880B82400ECADCA /* CityFixoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */; };
 		55E25D1E1880CD6400ECADCA /* LargerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E25D1D1880CD6400ECADCA /* LargerImage.m */; };
 		55E31E311893275C00BB6061 /* ProblemType.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E31E301893275C00BB6061 /* ProblemType.m */; };
 		55F8EC49189EE8F600C518EA /* ReportStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8EC48189EE8F600C518EA /* ReportStatusCell.m */; };
+		55FB9B4918B43947002F33F6 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FB9B4818B43947002F33F6 /* eraser.png */; };
+		55FB9B4B18B43B47002F33F6 /* pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FB9B4A18B43B47002F33F6 /* pen.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,7 @@
 		550E6E0E188751BF001C5FC0 /* MissedPickupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissedPickupsViewController.m; sourceTree = "<group>"; };
 		550E6E101887567E001C5FC0 /* GeneralRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralRequestViewController.h; sourceTree = "<group>"; };
 		550E6E111887567E001C5FC0 /* GeneralRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralRequestViewController.m; sourceTree = "<group>"; };
+		551070EC18AD618400018DAD /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
 		552264F0187F7227007A251F /* City 311.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "City 311.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		552264F3187F7227007A251F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		552264F5187F7227007A251F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -133,6 +138,7 @@
 		55B8E6FA18946FE50000A0E2 /* SurfaceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurfaceType.m; sourceTree = "<group>"; };
 		55D5E14C188609FC00C52096 /* DrawOnPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawOnPhotoViewController.h; sourceTree = "<group>"; };
 		55D5E14D188609FC00C52096 /* DrawOnPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawOnPhotoViewController.m; sourceTree = "<group>"; };
+		55D8AE8B18B69C92006C7E7C /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		55E25D191880B82400ECADCA /* CityFixoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityFixoryViewController.h; sourceTree = "<group>"; };
 		55E25D1A1880B82400ECADCA /* CityFixoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityFixoryViewController.m; sourceTree = "<group>"; };
 		55E25D1C1880CD6400ECADCA /* LargerImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargerImage.h; sourceTree = "<group>"; };
@@ -141,6 +147,8 @@
 		55E31E301893275C00BB6061 /* ProblemType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProblemType.m; sourceTree = "<group>"; };
 		55F8EC47189EE8F600C518EA /* ReportStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportStatusCell.h; sourceTree = "<group>"; };
 		55F8EC48189EE8F600C518EA /* ReportStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportStatusCell.m; sourceTree = "<group>"; };
+		55FB9B4818B43947002F33F6 /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraser.png; sourceTree = "<group>"; };
+		55FB9B4A18B43B47002F33F6 /* pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pen.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,11 +288,15 @@
 		5522652B187F7406007A251F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				55D8AE8B18B69C92006C7E7C /* photo.png */,
+				55FB9B4A18B43B47002F33F6 /* pen.png */,
+				55FB9B4818B43947002F33F6 /* eraser.png */,
 				5529A42D1891D022006C5381 /* dumping.jpg */,
 				5529A42E1891D022006C5381 /* graffiti.jpg */,
 				5529A42F1891D022006C5381 /* pothole.jpg */,
 				5529A4301891D022006C5381 /* tree.jpg */,
 				55319107188338E200827602 /* startView.xib */,
+				551070EC18AD618400018DAD /* cover.png */,
 				553190FF18821B1400827602 /* background.jpg */,
 				5522652C187F745F007A251F /* EZ-parking-meter.jpg */,
 				5522652D187F745F007A251F /* carnard.jpg */,
@@ -399,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5522650F187F7227007A251F /* Images.xcassets in Resources */,
+				55FB9B4B18B43B47002F33F6 /* pen.png in Resources */,
 				55226532187F745F007A251F /* pick-ups.jpg in Resources */,
 				5529A4311891D022006C5381 /* dumping.jpg in Resources */,
 				55226530187F745F007A251F /* EZ-parking-meter.jpg in Resources */,
@@ -410,8 +423,11 @@
 				55319108188338E200827602 /* startView.xib in Resources */,
 				5529A4331891D022006C5381 /* pothole.jpg in Resources */,
 				5529A4321891D022006C5381 /* graffiti.jpg in Resources */,
+				551070ED18AD618400018DAD /* cover.png in Resources */,
+				55D8AE8C18B69C92006C7E7C /* photo.png in Resources */,
 				559F7ED618A02F5900AB0F86 /* userInfo.xib in Resources */,
 				55226507187F7227007A251F /* Main.storyboard in Resources */,
+				55FB9B4918B43947002F33F6 /* eraser.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
