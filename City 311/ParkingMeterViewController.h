@@ -7,10 +7,12 @@
 //
 
 #import <MapKit/MapKit.h>
+#import "CityFirstViewController.h"
 
-@interface ParkingMeterViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UserInfoProxy, MKMapViewDelegate, CLLocationManagerDelegate>
+@interface ParkingMeterViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UserInfoDelegate, MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *problemLabel;
 @property (strong, nonatomic) UIImage *userImage;
 @property (copy, nonatomic) NSString *theme;
+@property (assign, nonatomic) CityFirstViewController *chief;
 
 @end

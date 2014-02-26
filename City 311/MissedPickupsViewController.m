@@ -124,9 +124,12 @@
      [self.view.layer addSublayer:greyLayer];*/
     
     manager = [[UserInfoManager alloc] init];
-    manager.proxy = self;
+    manager.delegate = self;
+    manager.proxy = self.chief;
     [[NSBundle mainBundle] loadNibNamed:@"userInfo" owner:manager options:nil];
     [manager setDefaultUserInfo];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:@[self.theme, material, self.addressField.text] forKeys:@[@"subject", @"material", @"address"]];
+    [manager packageServiceRequest:dictionary andImage:nil];
     
     [self.view addSubview:manager.view];
     
@@ -144,36 +147,7 @@
                                                           attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
 }
 
-- (void)appendUserInfo:(NSDictionary *)userInfo {
-    
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:@[self.theme, material, self.addressField.text] forKeys:@[@"subject", @"material", @"address"]];
-    NSMutableDictionary *savedDictionary = [[NSMutableDictionary alloc] init];
-    [savedDictionary addEntriesFromDictionary:dictionary];
-    
-    [dictionary addEntriesFromDictionary:userInfo];
-    
-    NSError *error;
-    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
-    if (error) {
-        // not able to create JSON.
-        NSLog(@"No JSON String");
-    }
-    
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    
-    if(![CityUtility sendJSON:JSONData andImage:nil]) {
-        // store the failure status
-        [savedDictionary setValue:[NSNumber numberWithBool:true] forKey:@"showButton"];
-        // generate a file path.
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyMMddHHmmss"];
-        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-        
-        [savedDictionary setValue:dateString forKey:@"path"];
-        
-        [CityUtility saveJSON:JSONData andImage:nil atFilePath:dateString];
-    }
-    // after all, save the request
-    [CityUtility saveRequest:savedDictionary];
+- (void)dismissViews {
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 }
 @end

@@ -18,10 +18,7 @@
 @implementation CityUtility
 
 + (BOOL)sendJSON:(NSData *)JSON andImage:(id)image {
-    if (image) {
-        //NSData *imageData = UIImagePNGRepresentation(image);
-    }
-    // by email.
+    
     // if sending JSON fail, inform the user.
     BOOL success = FALSE;
     static int k = 1;
@@ -78,7 +75,11 @@
     documentDirectory = [documentDirectory stringByAppendingPathComponent:@"City_311"];
     documentDirectory = [documentDirectory stringByAppendingPathComponent:path];
     
-    NSData *JSON = [NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:@"text"]];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"text"]];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [dictionary addEntriesFromDictionary:[userDefaults dictionaryRepresentation]];
+    NSError *error;
+    NSData *JSON = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
     UIImage *image = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"image"]];
     
     return [CityUtility sendJSON:JSON andImage:image];

@@ -27,7 +27,11 @@ enum Fixory {
     
     BOOL isFirstLoad; // rely on the default value 0. As I can't initialize it in app delegate. Can't initialize City First View Controller in application didFinishLauch method.
     
+    NSMutableDictionary *_savedDictionary;
+    NSData *JSONData;
+    id incidentImage;
 }
+@property (retain, nonatomic) NSMutableDictionary *savedDictionary;
 
 + (NSString *)instructionFor:(int)category;
 
@@ -36,6 +40,7 @@ enum Fixory {
 @end
 
 @implementation CityFirstViewController
+@synthesize savedDictionary = _savedDictionary;
 
 - (void)viewDidLoad
 {
@@ -207,6 +212,7 @@ enum Fixory {
     if ([segue.identifier isEqualToString:@"PresentReportSheet"]) {
         CityFixoryViewController *fixorySheet = segue.destinationViewController;
         fixorySheet.theme = (NSString *)sender;
+        fixorySheet.chief = self;
         enum Fixory k = Dumping;
         if ([(NSString *)sender isEqualToString:@"Graffiti"]) {
             k = Graffiti;
@@ -225,21 +231,110 @@ enum Fixory {
         return;
     }
     if ([segue.identifier isEqualToString:@"ParkingMeter"]) {
-        GeneralRequestViewController *viewController = segue.destinationViewController;
+        ParkingMeterViewController *viewController = segue.destinationViewController;
         viewController.theme = @"Parking Meter Problem";
         return;
     }
     if ([segue.identifier isEqualToString:@"Pothole"]) {
-        GeneralRequestViewController *viewController = segue.destinationViewController;
+        PotholeViewController *viewController = segue.destinationViewController;
         viewController.theme = @"Pothole Fix";
         return;
     }
     if ([segue.identifier isEqualToString:@"PlantTree"]) {
-        GeneralRequestViewController *viewController = segue.destinationViewController;
+        TreeViewController *viewController = segue.destinationViewController;
         viewController.theme = @"Missing Tree Found";
         return;
     }
 
+}
+
+#pragma mark UserInfoProxy delegate method
+- (void)appendUserInfo:(NSDictionary *)userInfo serviceRequest:(NSDictionary *)request andImage:(id)image {
+
+    incidentImage = image;
+    _savedDictionary = [[NSMutableDictionary alloc] init];
+    [_savedDictionary addEntriesFromDictionary:request];
+    //NSLog(@"request %@", [request description]);
+    
+    // combine request and userInfo
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:request];
+    [dictionary addEntriesFromDictionary:userInfo];
+    
+    NSError *error;
+    
+    JSONData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if (error) {
+        // not able to create JSON.
+        NSLog(@"No JSON String");
+    }
+    
+    if (![self sendByEmail:JSONData andImage:image]) {
+        NSLog(@"can't send emails");
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hey Citizen -" message:@"Berkeley City Service team currently receives only email request. It seems your email service is not set up yet." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Yes", nil];
+        [alert show];
+    }
+    
+    /*    if(![CityUtility sendJSON:JSONData andImage:incidentPhoto]) {
+     // store the failure status
+     [savedDictionary setValue:[NSNumber numberWithBool:true] forKey:@"showButton"];
+     // generate a file path.
+     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+     [dateFormatter setDateFormat:@"yyMMddHHmmss"];
+     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+     
+     [savedDictionary setValue:dateString forKey:@"path"];
+     
+     [CityUtility saveJSON:JSONData andImage:incidentPhoto atFilePath:dateString];
+     }
+     // after all, save the request
+     [CityUtility saveRequest:savedDictionary];*/
+}
+
+- (BOOL)sendByEmail:(NSData *)JSON andImage:(id)image {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+        mailController.mailComposeDelegate = self;
+        [mailController setSubject:@"311 Service Request from Berkeley 311 App"];
+        [mailController setToRecipients:@[@"nicklittlejohn@gmail.com"]];
+        NSString *body = [[NSString alloc] initWithData:JSON encoding:NSUTF8StringEncoding];
+        [mailController setMessageBody:body isHTML:NO];
+        
+        if (image) {
+            NSData *imageData = UIImagePNGRepresentation(image);
+            [mailController addAttachmentData:imageData mimeType:@"image/png"
+                                     fileName:@"image"];
+        }
+        [self presentViewController:mailController animated:NO completion:nil];
+        return TRUE;
+    }
+    return FALSE;
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [controller.presentingViewController dismissViewControllerAnimated:NO completion:^{
+        
+        if (result == MFMailComposeResultSent) {
+            NSLog(@"queued at outbox");
+        }
+        
+        if (result == MFMailComposeResultFailed || result == MFMailComposeResultCancelled) {
+            // store the failure status
+            [_savedDictionary setValue:[NSNumber numberWithBool:true] forKey:@"showButton"];
+            // generate a file path.
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyMMddHHmmss"];
+            NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+            
+            [_savedDictionary setValue:dateString forKey:@"path"];
+            
+            [CityUtility saveJSON:JSONData andImage:incidentImage atFilePath:dateString];
+        }
+        // after all, save the request
+      //  NSLog(@"saved dictionary: %@", [_savedDictionary description]);
+        [CityUtility saveRequest:_savedDictionary];
+    }];
+    
 }
 
 @end

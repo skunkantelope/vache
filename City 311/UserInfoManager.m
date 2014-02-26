@@ -17,6 +17,9 @@
     int kFields;
 }
 
+@property (strong, nonatomic) NSDictionary *fixRequest;
+@property (assign, nonatomic) id image;
+
 @property (weak, nonatomic) IBOutlet UITextField *phone;
 @property (weak, nonatomic) IBOutlet UITextField *email;
 @property (weak, nonatomic) IBOutlet UITextField *lastName;
@@ -30,8 +33,8 @@
 
 @end
 
-static NSString * const PHONE = @"phoneKey";
-static NSString * const EMAIL = @"emailKey";
+static NSString * const PHONE = @"phone";
+static NSString * const EMAIL = @"email";
 static NSString * const LAST = @"lastName";
 static NSString * const FIRST = @"firstName";
 
@@ -68,59 +71,92 @@ static NSString * const FIRST = @"firstName";
     
 }
 
-#pragma mark - Text field delegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField.placeholder) {
-        [textField resignFirstResponder];
-        return YES;
-    } else {
-        NSString *userText = [textField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if (![userText isEqualToString:@""]) {
-            ++kFields;
-            [textField resignFirstResponder];
-            return YES;
-        }
-        return NO;
-    }
-    
+- (void)packageServiceRequest:(NSDictionary *)request andImage:(id)image {
+    self.fixRequest = request;
+    self.image = image;
 }
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    if (kFields == 4) {
-        self.continueButton.enabled = YES;
-    }
+#pragma mark - Text field delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    // default return does nothing.
+
+    // user wants to resign first responder. grant it. but verify the input in textFieldShouldEndEditing
+    [textField resignFirstResponder];
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     NSString *userText = [textField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (![userText isEqualToString:@""]) { // update user defaults, and instance variables
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (!textField.placeholder) {
+        
         if (textField == self.phone) {
-            if ([userText length] == 10) {
-                phoneNo = userText;
-                [defaults setObject:userText forKey:PHONE];
+            NSString *regEx = @"[0-9]{3}\\s*[0-9]{3}\\s*[0-9]{4}$";
+            NSRange r = [textField.text rangeOfString:regEx options:NSRegularExpressionSearch];
+            if (r.location == NSNotFound) {
+                return NO;
             }
+            return YES;
+        } else {
+    
+            if ([userText isEqualToString:@""]) {
+                return NO;
+            }
+            return YES;
+        }
+    } else {
+        if (![userText isEqualToString:@""]) {
+            //verify the phone number
+            if (textField == self.phone) {
+                NSString *regEx = @"[0-9]{3}\\s*[0-9]{3}\\s*[0-9]{4}$";
+                NSRange r = [textField.text rangeOfString:regEx options:NSRegularExpressionSearch];
+                //NSLog(@"maching phone number");
+                if (r.location == NSNotFound) {
+                    return NO;
+                }
+                return YES;
+            }
+            return YES;
+        }
+        return YES;
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+ 
+    NSString *userText = [textField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (![userText isEqualToString:@""]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        ++kFields;
+        NSLog(@"kFields %i", kFields);
+        if (kFields == 4) {
+            self.continueButton.enabled = YES;
+        }
+        
+        if (textField == self.phone) {
+            phoneNo = textField.text;
+            [defaults setObject:phoneNo forKey:PHONE];
+            
             return;
         }
         if (textField == self.email) {
-            emailAddress = userText;
-            [defaults setObject:userText forKey:EMAIL];
+            emailAddress = textField.text;
+            [defaults setObject:emailAddress forKey:EMAIL];
+    
             return;
         }
         if (textField == self.lastName) {
-            userLast = userText;
-            [defaults setObject:userText forKey:LAST];
+            userLast = textField.text;
+            [defaults setObject:userLast forKey:LAST];
+
             return;
         }
         if (textField == self.firstName) {
-            userFirst = userText;
-            [defaults setObject:userText forKey:FIRST];
+            userFirst = textField.text;
+            [defaults setObject:userFirst forKey:FIRST];
+
         }
     }
-    if (kFields == 4) {
-        self.continueButton.enabled = YES;
-    }
+    
 }
 /*
  #pragma mark - Navigation
@@ -135,9 +171,10 @@ static NSString * const FIRST = @"firstName";
 
 - (IBAction)continue:(id)sender {
     // send placeholder text which is instance string variables.
-    NSLog(@"clicked.");
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:@[userFirst, userLast, phoneNo, emailAddress] forKeys:@[FIRST, LAST, PHONE, EMAIL]];
-    [self.proxy appendUserInfo:dictionary];
+    [self.proxy appendUserInfo:dictionary serviceRequest:self.fixRequest andImage:self.image];
+    // self.proxy can't be nil. 
+    [self.delegate dismissViews];
 }
 /*
 - (IBAction)confirm:(id)sender {

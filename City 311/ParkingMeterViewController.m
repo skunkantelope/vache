@@ -59,6 +59,8 @@
     self.observation.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.observation.layer.borderWidth = 1.0;
 
+    self.incidentImage.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"photo"]];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
 }
@@ -222,9 +224,12 @@
      [self.view.layer addSublayer:greyLayer];*/
     
     manager = [[UserInfoManager alloc] init];
-    manager.proxy = self;
+    manager.delegate = self;
+    manager.proxy = self.chief;
     [[NSBundle mainBundle] loadNibNamed:@"userInfo" owner:manager options:nil];
     [manager setDefaultUserInfo];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:@[self.theme, self.IDField.text, self.problemLabel.text, self.locationField.text, [NSString stringWithFormat:@"lat - %f; long - %f", incidentCoord.latitude, incidentCoord.longitude], self.observation.text] forKeys:@[@"subject", @"ID", @"problem", @"landmark", @"location", @"discription"]];
+    [manager packageServiceRequest:dictionary andImage:incidentPhoto];
     
     [self.view addSubview:manager.view];
     
@@ -243,37 +248,8 @@
     
 }
 
-- (void)appendUserInfo:(NSDictionary *)userInfo {
-    
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:@[self.theme, self.IDField.text, self.problemLabel.text, self.locationField.text, [NSString stringWithFormat:@"lat - %f; long - %f", incidentCoord.latitude, incidentCoord.longitude], self.observation.text] forKeys:@[@"subject", @"ID", @"problem", @"landmark", @"location", @"discription"]];
-    NSMutableDictionary *savedDictionary = [[NSMutableDictionary alloc] init];
-    [savedDictionary addEntriesFromDictionary:dictionary];
-    
-    [dictionary addEntriesFromDictionary:userInfo];
-    
-    NSError *error;
-    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
-    if (error) {
-        // not able to create JSON.
-        NSLog(@"No JSON String");
-    }
-    
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    
-    if(![CityUtility sendJSON:JSONData andImage:incidentPhoto]) {
-        // store the failure status
-        [savedDictionary setValue:[NSNumber numberWithBool:true] forKey:@"showButton"];
-        // generate a file path.
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyMMddHHmmss"];
-        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-        
-        [savedDictionary setValue:dateString forKey:@"path"];
-        
-        [CityUtility saveJSON:JSONData andImage:incidentPhoto atFilePath:dateString];
-    }
-    // after all, save the request
-    [CityUtility saveRequest:savedDictionary];
+- (void)dismissViews {
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (IBAction)chooseProblemType:(id)sender {

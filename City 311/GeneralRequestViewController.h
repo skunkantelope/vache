@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Kelly Kahuna Imagery. All rights reserved.
 //
 
-
-@interface GeneralRequestViewController : UIViewController <UITextViewDelegate, UserInfoProxy>
+#import "CityFirstViewController.h"
+@interface GeneralRequestViewController : UIViewController <UITextViewDelegate, UserInfoDelegate>
 @property (copy, nonatomic) NSString *theme;
-
+@property (assign, nonatomic) CityFirstViewController *chief;
 @end

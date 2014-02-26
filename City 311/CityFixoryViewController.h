@@ -7,12 +7,14 @@
 //
 
 #import <MapKit/MapKit.h>
+#import "CityFirstViewController.h"
 
-@interface CityFixoryViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UserInfoProxy, CLLocationManagerDelegate>
+@interface CityFixoryViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, UserInfoDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 
 @property (retain, nonatomic) NSString *guidance;
 @property (strong, nonatomic) UIImage *userImage;
 @property (copy, nonatomic) NSString *theme;
 
+@property (assign, nonatomic) CityFirstViewController *chief;
 @end

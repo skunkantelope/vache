@@ -7,10 +7,11 @@
 //
 
 #import <MapKit/MapKit.h>
+#import "CityFirstViewController.h"
 
-@interface TreeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UserInfoProxy, CLLocationManagerDelegate, MKMapViewDelegate>
+@interface TreeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UserInfoDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (strong, nonatomic) UIImage *userImage;
 @property (copy, nonatomic) NSString *theme;
-
+@property (assign, nonatomic) CityFirstViewController *chief;
 @end

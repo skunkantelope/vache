@@ -44,6 +44,7 @@
 		5531910218822ACF00827602 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5531910118822ACF00827602 /* MapKit.framework */; };
 		55319108188338E200827602 /* startView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55319107188338E200827602 /* startView.xib */; };
 		5547F10C18849E18009CEE09 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5547F10B18849E18009CEE09 /* CoreLocation.framework */; };
+		556312EA18B6D9B200AFCA0E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 556312E918B6D9B200AFCA0E /* MessageUI.framework */; };
 		557193FF18906EAE00F2AA52 /* PotholeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557193FE18906EAE00F2AA52 /* PotholeViewController.m */; };
 		5571940218906F5700F2AA52 /* ParkingMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571940118906F5700F2AA52 /* ParkingMeterViewController.m */; };
 		5578A2811889EB9D009640CF /* CityNewsParseHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5578A2801889EB9D009640CF /* CityNewsParseHTMLViewController.m */; };
@@ -123,6 +124,7 @@
 		5531910118822ACF00827602 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		55319107188338E200827602 /* startView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = startView.xib; sourceTree = "<group>"; };
 		5547F10B18849E18009CEE09 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		556312E918B6D9B200AFCA0E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		557193FD18906EAE00F2AA52 /* PotholeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotholeViewController.h; sourceTree = "<group>"; };
 		557193FE18906EAE00F2AA52 /* PotholeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotholeViewController.m; sourceTree = "<group>"; };
 		5571940018906F5700F2AA52 /* ParkingMeterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkingMeterViewController.h; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				556312EA18B6D9B200AFCA0E /* MessageUI.framework in Frameworks */,
 				553055651888BD1A00C57A8E /* libxml2.2.dylib in Frameworks */,
 				5547F10C18849E18009CEE09 /* CoreLocation.framework in Frameworks */,
 				5531910218822ACF00827602 /* MapKit.framework in Frameworks */,
@@ -200,6 +203,7 @@
 		552264F2187F7227007A251F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				556312E918B6D9B200AFCA0E /* MessageUI.framework */,
 				553055641888BD1A00C57A8E /* libxml2.2.dylib */,
 				5547F10B18849E18009CEE09 /* CoreLocation.framework */,
 				5531910118822ACF00827602 /* MapKit.framework */,
@@ -605,6 +609,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "City 311/City 311-Prefix.pch";
 				INFOPLIST_FILE = "City 311/City 311-Info.plist";
@@ -619,6 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "City 311/City 311-Prefix.pch";
 				INFOPLIST_FILE = "City 311/City 311-Info.plist";

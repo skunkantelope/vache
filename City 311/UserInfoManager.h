@@ -8,7 +8,13 @@
 
 @protocol UserInfoProxy <NSObject>
 
-- (void)appendUserInfo:(NSDictionary *)userInfo;
+- (void)appendUserInfo:(NSDictionary *)userInfo serviceRequest:(NSDictionary *)request andImage:(id)image;
+
+@end
+
+@protocol UserInfoDelegate <NSObject>
+
+- (void)dismissViews;
 
 @end
 
@@ -17,8 +23,10 @@
 }
 
 @property (assign, nonatomic) id<UserInfoProxy> proxy;
+@property (assign, nonatomic) id<UserInfoDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIView *view;
 
 - (void)setDefaultUserInfo;
+- (void)packageServiceRequest:(NSDictionary *)request andImage:(id)image;
 
 @end
