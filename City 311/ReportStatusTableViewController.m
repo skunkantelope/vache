@@ -209,7 +209,8 @@
         MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
         mailController.mailComposeDelegate = self;
         [mailController setSubject:@"311 Service Request from Berkeley 311 App"];
-        [mailController setToRecipients:@[@"nicklittlejohn@gmail.com"]];
+        //[mailController setToRecipients:@[@"nicklittlejohn@gmail.com"]];
+        [mailController setToRecipients:@[@"customerservice@ci.berkeley.ca.us"]];
         NSString *body = [dictionary description];
         [mailController setMessageBody:body isHTML:NO];
         
