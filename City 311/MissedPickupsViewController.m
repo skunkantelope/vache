@@ -117,11 +117,6 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(maskView);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[maskView]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[maskView]|" options:0 metrics:nil views:views]];
-    /*   CALayer *greyLayer = [CALayer layer];
-     greyLayer.opacity = 0.7;
-     greyLayer.backgroundColor = [UIColor grayColor].CGColor; // Todo: Use color space to make a nicer color;
-     greyLayer.frame = self.view.bounds;
-     [self.view.layer addSublayer:greyLayer];*/
     
     manager = [[UserInfoManager alloc] init];
     manager.delegate = self;

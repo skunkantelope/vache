@@ -223,26 +223,31 @@ enum Fixory {
     if ([segue.identifier isEqualToString:@"Pickups"]) {
         MissedPickupsViewController *viewController = segue.destinationViewController;
         viewController.theme = @"No Pickups Noticed";
+        viewController.chief = self;
         return;
     }
     if ([segue.identifier isEqualToString:@"Request"]) {
         GeneralRequestViewController *viewController = segue.destinationViewController;
         viewController.theme = @"Service Request";
+        viewController.chief = self;
         return;
     }
     if ([segue.identifier isEqualToString:@"ParkingMeter"]) {
         ParkingMeterViewController *viewController = segue.destinationViewController;
         viewController.theme = @"Parking Meter Problem";
+        viewController.chief = self;
         return;
     }
     if ([segue.identifier isEqualToString:@"Pothole"]) {
         PotholeViewController *viewController = segue.destinationViewController;
         viewController.theme = @"Pothole Fix";
+        viewController.chief = self;
         return;
     }
     if ([segue.identifier isEqualToString:@"PlantTree"]) {
         TreeViewController *viewController = segue.destinationViewController;
         viewController.theme = @"Missing Tree Found";
+        viewController.chief = self;
         return;
     }
 
@@ -316,9 +321,7 @@ enum Fixory {
         
         if (result == MFMailComposeResultSent) {
             NSLog(@"queued at outbox");
-        }
-        
-        if (result == MFMailComposeResultFailed || result == MFMailComposeResultCancelled) {
+        } else {
             // store the failure status
             [_savedDictionary setValue:[NSNumber numberWithBool:true] forKey:@"showButton"];
             // generate a file path.
@@ -327,11 +330,11 @@ enum Fixory {
             NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
             
             [_savedDictionary setValue:dateString forKey:@"path"];
-            
+       // NSLog(@"json %@",[[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding]);
+
             [CityUtility saveJSON:JSONData andImage:incidentImage atFilePath:dateString];
         }
         // after all, save the request
-      //  NSLog(@"saved dictionary: %@", [_savedDictionary description]);
         [CityUtility saveRequest:_savedDictionary];
     }];
     

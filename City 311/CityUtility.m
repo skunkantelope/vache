@@ -57,9 +57,17 @@
     
     if (error) {
         NSLog(@"Not able to create city_311 sub directory: %@", [error localizedDescription]);
+        return FALSE;
+    }
+    // transform JSON to Dictionary and save the dictionary.
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:JSON options:kNilOptions error:&error];
+    if (error) {
+        NSLog(@"Not able to transform JSON to foundation object %@", [error localizedDescription]);
+        return FALSE;
     }
     
-    [[NSFileManager defaultManager] createFileAtPath:[currentDirectory stringByAppendingPathComponent:@"text"] contents:JSON attributes:nil];
+    [dictionary writeToFile:[currentDirectory stringByAppendingPathComponent:@"text"] atomically:YES];
+    NSLog(@"dictionary %@", dictionary);
     if (image) {
         NSData *imageData = UIImagePNGRepresentation(image);
         [imageData writeToFile:[currentDirectory stringByAppendingPathComponent:@"image"] atomically:YES];
@@ -75,12 +83,17 @@
     documentDirectory = [documentDirectory stringByAppendingPathComponent:@"City_311"];
     documentDirectory = [documentDirectory stringByAppendingPathComponent:path];
     
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"text"]];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[documentDirectory stringByAppendingPathComponent:@"text"]];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [dictionary addEntriesFromDictionary:[userDefaults dictionaryRepresentation]];
     NSError *error;
     NSData *JSON = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
-    UIImage *image = [UIImage imageWithContentsOfFile:[path stringByAppendingPathComponent:@"image"]];
+
+    UIImage *image;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:[documentDirectory stringByAppendingPathComponent:@"image"]]) {
+        image = [UIImage imageWithContentsOfFile:[documentDirectory stringByAppendingPathComponent:@"image"]];
+    }
     
     return [CityUtility sendJSON:JSON andImage:image];
 }
@@ -157,4 +170,14 @@
     return documentDirectory;
 }
 
++ (BOOL)removeUserRequest:(NSString *)path {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = paths[0];
+    
+    documentDirectory = [documentDirectory stringByAppendingPathComponent:@"City_311"];
+    documentDirectory = [documentDirectory stringByAppendingPathComponent:path];
+    
+    NSError *error;
+    return [[NSFileManager defaultManager] removeItemAtPath:documentDirectory error:&error];
+}
 @end

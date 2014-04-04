@@ -145,12 +145,16 @@
                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w3m-Tk-YwO">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="w3m-Tk-YwO">
                                         <rect key="frame" x="20" y="299" width="280" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="280" id="M3S-GC-9KT"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="VL7-LZ-8AP" appends="YES" id="0VS-Yi-mhJ"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -209,6 +213,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9i-T9-g1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="VL7-LZ-8AP">
+                    <connections>
+                        <action selector="loadImage:" destination="NSI-t5-2pp" id="hQ6-Eb-oPu"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="888" y="-1068"/>
         </scene>
@@ -547,12 +556,16 @@
                                             <outlet property="delegate" destination="8r6-Mu-7be" id="5Ch-SL-gyU"/>
                                         </connections>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6WI-Gj-h0t">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="6WI-Gj-h0t">
                                         <rect key="frame" x="20" y="302" width="280" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="280" id="or2-GJ-cwk"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="d3A-QV-OYo" appends="YES" id="M78-3w-H7D"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -613,6 +626,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Edd-Sp-IVp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="d3A-QV-OYo">
+                    <connections>
+                        <action selector="loadImage:" destination="8r6-Mu-7be" id="dlB-bL-ykH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2681" y="-250"/>
         </scene>
@@ -849,12 +867,16 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hoO-3z-OM2">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="hoO-3z-OM2">
                                         <rect key="frame" x="20" y="366" width="280" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="280" id="0w8-Sx-94f"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="GYb-yz-nyd" appends="YES" id="ttn-4c-6Jb"/>
+                                        </connections>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What did you observe?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLi-cn-RQp">
                                         <rect key="frame" x="20" y="647" width="167" height="18"/>
@@ -1001,6 +1023,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9WQ-or-mvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GYb-yz-nyd">
+                    <connections>
+                        <action selector="loadImage:" destination="9Nb-ob-CtB" id="NFl-Z5-lT8"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1408" y="-913"/>
         </scene>
@@ -1320,7 +1347,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dp-Nz-Jec">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6dp-Nz-Jec">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1615,12 +1642,16 @@
                                             <outlet property="delegate" destination="tvi-tO-Jqw" id="JFm-JN-Mhn"/>
                                         </connections>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9I6-rK-N86">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="9I6-rK-N86">
                                         <rect key="frame" x="20" y="348" width="280" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="280" id="eJz-n8-O5g"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="5jw-cg-KRX" appends="YES" id="X91-F7-FN5"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -1686,6 +1717,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mXe-Wm-CWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5jw-cg-KRX">
+                    <connections>
+                        <action selector="loadImage:" destination="tvi-tO-Jqw" id="LDi-YC-anh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="686" y="469"/>
         </scene>
@@ -1843,6 +1879,7 @@
         <image name="news" width="30" height="30"/>
         <image name="parking-meters.jpg" width="601" height="826"/>
         <image name="pen.png" width="30" height="40"/>
+        <image name="photo.png" width="280" height="280"/>
         <image name="pick-ups.jpg" width="538" height="434"/>
         <image name="pothole.jpg" width="357" height="309"/>
         <image name="report" width="30" height="30"/>

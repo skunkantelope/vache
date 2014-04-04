@@ -68,7 +68,6 @@
     [self.potholeScroll addSubview:circle];
     
     property = @"";
-    self.incidentImage.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"photo"]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
@@ -90,7 +89,10 @@
 }
 */
 - (void)viewDidAppear:(BOOL)animated {
-    self.incidentImage.image = incidentPhoto;
+    if (incidentPhoto) {
+        self.incidentImage.image = incidentPhoto;
+    }
+    
 }
 
 #pragma mark - CLLocation Manager Delegate.
@@ -107,6 +109,11 @@
     annotation.coordinate = location.coordinate;
     annotation.title = @"Incident Location"; // display in a callout.
     
+    NSArray *annotations = self.map.annotations;
+    if (annotations) {
+        [self.map removeAnnotations:annotations];
+
+    }
     [self.map addAnnotation:annotation];
     
     //[self.map showAnnotations:@[annotation] animated:YES];

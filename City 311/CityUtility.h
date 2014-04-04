@@ -14,5 +14,6 @@
 + (BOOL)saveRequest:(NSDictionary *)dictionary; 
 + (BOOL)saveJSON:(NSData *)JSON andImage:(id)image atFilePath:(NSString *)path;
 + (BOOL)loadFilesAtPath:(NSString *)path; // send again
++ (BOOL)removeUserRequest:(NSString *)path;
 
 @end

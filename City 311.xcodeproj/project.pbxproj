@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5508950B18EF7556007C489F /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 5508950A18EF7556007C489F /* cover.png */; };
 		550E6E0F188751BF001C5FC0 /* MissedPickupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550E6E0E188751BF001C5FC0 /* MissedPickupsViewController.m */; };
 		550E6E121887567E001C5FC0 /* GeneralRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550E6E111887567E001C5FC0 /* GeneralRequestViewController.m */; };
-		551070ED18AD618400018DAD /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 551070EC18AD618400018DAD /* cover.png */; };
 		552264F4187F7227007A251F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F3187F7227007A251F /* Foundation.framework */; };
 		552264F6187F7227007A251F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F5187F7227007A251F /* CoreGraphics.framework */; };
 		552264F8187F7227007A251F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552264F7187F7227007A251F /* UIKit.framework */; };
@@ -73,11 +73,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5508950A18EF7556007C489F /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
 		550E6E0D188751BE001C5FC0 /* MissedPickupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissedPickupsViewController.h; sourceTree = "<group>"; };
 		550E6E0E188751BF001C5FC0 /* MissedPickupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissedPickupsViewController.m; sourceTree = "<group>"; };
 		550E6E101887567E001C5FC0 /* GeneralRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralRequestViewController.h; sourceTree = "<group>"; };
 		550E6E111887567E001C5FC0 /* GeneralRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralRequestViewController.m; sourceTree = "<group>"; };
-		551070EC18AD618400018DAD /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
 		552264F0187F7227007A251F /* City 311.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "City 311.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		552264F3187F7227007A251F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		552264F5187F7227007A251F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -300,7 +300,7 @@
 				5529A42F1891D022006C5381 /* pothole.jpg */,
 				5529A4301891D022006C5381 /* tree.jpg */,
 				55319107188338E200827602 /* startView.xib */,
-				551070EC18AD618400018DAD /* cover.png */,
+				5508950A18EF7556007C489F /* cover.png */,
 				553190FF18821B1400827602 /* background.jpg */,
 				5522652C187F745F007A251F /* EZ-parking-meter.jpg */,
 				5522652D187F745F007A251F /* carnard.jpg */,
@@ -423,11 +423,11 @@
 				552264FE187F7227007A251F /* InfoPlist.strings in Resources */,
 				5531910018821B1400827602 /* background.jpg in Resources */,
 				55226533187F745F007A251F /* parking-meters.jpg in Resources */,
+				5508950B18EF7556007C489F /* cover.png in Resources */,
 				5529A4341891D022006C5381 /* tree.jpg in Resources */,
 				55319108188338E200827602 /* startView.xib in Resources */,
 				5529A4331891D022006C5381 /* pothole.jpg in Resources */,
 				5529A4321891D022006C5381 /* graffiti.jpg in Resources */,
-				551070ED18AD618400018DAD /* cover.png in Resources */,
 				55D8AE8C18B69C92006C7E7C /* photo.png in Resources */,
 				559F7ED618A02F5900AB0F86 /* userInfo.xib in Resources */,
 				55226507187F7227007A251F /* Main.storyboard in Resources */,
@@ -560,7 +560,7 @@
 					"/Applications/Xcode51-DP.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -598,7 +598,7 @@
 					"/Applications/Xcode51-DP.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
